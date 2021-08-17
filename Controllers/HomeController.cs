@@ -41,6 +41,7 @@ namespace MyProjectWebApp.Controllers
             var appLoc = objRepo.GetLocation();
             var appSubDomain = objRepo.GetSubDomain();
             var appTSR = objRepo.GetTimeSheetRep();
+            var appSP = objRepo.GetSalesPerson();
             var emp = new ProjectAddEditViewModel
             {
                 ProjectStatusList = appProjSatus,
@@ -52,7 +53,8 @@ namespace MyProjectWebApp.Controllers
                 RecruiterList= appRec,
                 LocationGroupList=appLoc,
                 SubDomainList=appSubDomain,
-                TSRList=appTSR
+                TSRList=appTSR,
+                SalesPersonList=appSP
             };
             return View(emp);
         }

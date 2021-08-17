@@ -294,6 +294,27 @@ namespace MyProjectWebApp.Repo
             con.Close();
             return SelectListNew;
         }
+        public List<SelectList> GetSalesPerson()
+        {
+            List<SelectList> SelectListNew = new List<SelectList>();
 
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_SalesPerson_Training_Kailash", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                SelectListNew.Add(new SelectList { Id = Convert.ToInt32(reader["EmployeeDetails_Id"]), Name = reader["SalesPerson"].ToString() });
+            }
+
+            reader.Close();
+
+            con.Close();
+            return SelectListNew;
+        }
     }
 }

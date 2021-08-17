@@ -48,11 +48,11 @@
         @Html.DropDownListFor(m => m.Project.PayRoll_State, new SelectList(Model.PayRollStateList, "Id", "Name"), new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Project.PayRoll_State, "", new { @class = "text-danger" })
     </div>*@
-    @*<div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(m => m.Project.Sales_Person)
         @Html.DropDownListFor(m => m.Project.Sales_Person, new SelectList(Model.SalesPersonList, "Id", "Name"), new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Project.Sales_Person, "", new { @class = "text-danger" })
-    </div>*@
+    </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Project.Proj_Cat)
         @Html.DropDownListFor(m => m.Project.Proj_Cat, new SelectList(Model.ProjectCatList, "Id", "Name"), new { @class = "form-control" })
