@@ -35,40 +35,52 @@ namespace MyProjectWebApp.Models
         [Display(Name = "Project Status")]
         public string Project_Status { get; set; }
 
-
+        
         [Display(Name = "Location/Group")]
+        [Required(ErrorMessage = "Please Select")]
         public string Location_Group { get; set; }
 
         [Display(Name = "PayRoll State")]
+        [Required(ErrorMessage = "Please Select")]
         public string PayRoll_State { get; set; }
 
         [Display(Name = "Sales Person")]
+        [Required(ErrorMessage = "Please Select")]
         public string Sales_Person { get; set; }
 
         [Display(Name = "Project Category")]
+        [Required(ErrorMessage = "Please Select")]
         public string Proj_Cat { get; set; }
 
         [Display(Name = "Project Type")]
+        [Required(ErrorMessage = "Please Select")]
         public string Proj_Type { get; set; }
 
         [Display(Name = "Sub-Domain")]
+        [Required(ErrorMessage = "Please Select")]
         public string Sub_Dom { get; set; }
 
         [Display(Name = "Times Sheet Representative")]
+        [Required(ErrorMessage = "Please Select")]
         public string TSP { get; set; }
 
         [Display(Name = "Client-Invoice Group")]
+        [Required(ErrorMessage = "Please Select")]
         public string CIG { get; set; }
 
         [Display(Name = "Timesheet Type")]
+        [Required(ErrorMessage = "Please Select")]
         public string TimesheetType { get; set; }
 
         [Display(Name = "Is VMS Timesheet")]
+        [Required(ErrorMessage = "Please Select")]
         public bool IVT { get; set; }
 
         [Display(Name = "Practice Type")]
+        [Required(ErrorMessage = "Please Select")]
         public string Prac_Type { get; set; }
 
+        [Required(ErrorMessage = "Please Select")]
         public string Recruiter { get; set; }
 
     }
