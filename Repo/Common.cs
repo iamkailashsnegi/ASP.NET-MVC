@@ -316,5 +316,27 @@ namespace MyProjectWebApp.Repo
             con.Close();
             return SelectListNew;
         }
+        public List<SelectList> GetPayRoll()
+        {
+            List<SelectList> SelectListNew = new List<SelectList>();
+
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_PayRoll_Training_Kailash", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                SelectListNew.Add(new SelectList { Id = Convert.ToInt32(reader["State_Id"]), Name = reader["Payroll_State"].ToString() });
+            }
+
+            reader.Close();
+
+            con.Close();
+            return SelectListNew;
+        }
     }
 }

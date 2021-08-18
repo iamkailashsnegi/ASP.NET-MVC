@@ -21,6 +21,5 @@ namespace MyProjectWebApp.ViewModel
         public List<SelectList> TimeSheetTypeList { get; set; }
         public List<SelectList> PracTypeList { get; set; }
         public List<SelectList> RecruiterList { get; set; }
-
     }
 }
