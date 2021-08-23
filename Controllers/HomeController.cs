@@ -8,6 +8,8 @@ using MyProjectWebApp.Repo;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using MyProjectWebApp.Models;
+using System.Web.UI.WebControls;
 
 namespace MyProjectWebApp.Controllers
 {
@@ -20,10 +22,6 @@ namespace MyProjectWebApp.Controllers
             string _conString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
             con = new SqlConnection(_conString);
 
-        }
-        public ActionResult Index()
-        {
-            return View();
         }
 
         public ActionResult About()
@@ -73,10 +71,9 @@ namespace MyProjectWebApp.Controllers
             return View(emp);
         }
      
-        public ActionResult Save(ProjectAddEditViewModel model)
+        public bool Save(ProjectAddEditViewModel model)
         {
             Connection();
-            con.Open();
             SqlCommand cmd = new SqlCommand("Project_Kailash_Training", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Cust_Name", model.Project.Cust_Name);
@@ -97,9 +94,22 @@ namespace MyProjectWebApp.Controllers
             cmd.Parameters.AddWithValue("@IsVMS", model.Project.IVT);
             cmd.Parameters.AddWithValue("@Prac_Type", model.Project.Prac_Type);
             cmd.Parameters.AddWithValue("@Recruiter", model.Project.Recruiter);
-            cmd.ExecuteNonQuery();
+            con.Open();
+            int i = cmd.ExecuteNonQuery();
             con.Close();
-            return View(model);
+            if(i>=1)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+
+        public ActionResult GetList()
+        {
+            return View();
         }
     }
 }

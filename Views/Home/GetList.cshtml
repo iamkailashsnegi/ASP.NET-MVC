@@ -1,0 +1,134 @@
+﻿@model IEnumerable<MyProjectWebApp.Models.Project>
+
+@{
+    ViewBag.Title = "GetList";
+}
+
+<h2>GetList</h2>
+
+<p>
+    @Html.ActionLink("GetList", "Save")
+</p>
+<table id="myTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cust_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ED)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location_Group)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayRoll_State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales_Person)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proj_Cat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proj_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sub_Dom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TSP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CIG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimesheetType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IVT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prac_Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recruiter)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cust_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ED)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location_Group)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayRoll_State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sales_Person)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proj_Cat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proj_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sub_Dom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TSP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CIG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimesheetType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IVT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prac_Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recruiter)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>

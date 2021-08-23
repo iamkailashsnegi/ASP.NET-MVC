@@ -338,5 +338,9 @@ namespace MyProjectWebApp.Repo
             con.Close();
             return SelectListNew;
         }
+        public List<Project> GetProjectsList()
+        { 
+            return null;
+        }
     }
 }
