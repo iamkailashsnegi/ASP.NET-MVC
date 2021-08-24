@@ -111,5 +111,15 @@ namespace MyProjectWebApp.Controllers
         {
             return View();
         }
+
+        public ActionResult AddProject()
+        {
+            return View();
+        }
+        
+        public ActionResult ProjectAdd() 
+        { 
+            return View();
+        }
     }
 }

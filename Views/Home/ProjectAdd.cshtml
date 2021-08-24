@@ -1,7 +1,291 @@
-﻿@model MyProjectWebApp.ViewModel.ProjectAdd
+﻿
 @{
     ViewBag.Title = "ProjectAdd";
 }
 
 <h2>ProjectAdd</h2>
+<form>
+    <div class="form-group">
+        <label>Customer Name</label>
+        <input class="form-control" type="text" id="custName" />
+    </div>
+    <div class="form-group">
+        <label>Project Name</label>
+        <input class="form-control" type="text" id="projectName" />
+    </div>
+    <div class="form-group">
+        <label>Project Id</label>
+        <input class="form-control" type="text" id="Id" />
+    </div>
+    <div class="form-group">
+        <label>Start Date</label>
+        <input class="form-control" type="date" id="startDate" />
+    </div>
+    <div class="form-group">
+        <label>End Date</label>
+        <input class="form-control" type="date" id="endDate" />
+    </div>
+    <div class="form-group">
+        <label>Project Status</label>
+        <select class="form-control" id="ddlProjectStatus">
 
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Location/Group</label>
+        <select class="form-control" id="ddlLocationGroup">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>PayRoll State</label>
+        <select class="form-control" id="ddlPrState">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Sales Person</label>
+        <select class="form-control" id="ddlSalesPerson">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Project Catagory</label>
+        <select class="form-control" id="ddlProjectCatagory">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Project Type</label>
+        <select class="form-control" id="ddlProjectType">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Sub-Domain</label>
+        <select class="form-control" id="ddlSubDomain">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Times Sheet Representative</label>
+        <select class="form-control" id="ddlTimesSheetRep">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Client-Invoice Group</label>
+        <select class="form-control" id="ddlClientInvoiceGroup">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Timesheet Type</label>
+        <select class="form-control" id="ddlTimesheetType">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Is VMS Timesheet</label>
+        <input type="radio" id="yes" value="Yes" />
+        <label for="yes">Yes</label>
+        <input type="radio" id="no" value="No" />
+        <label for="no">No</label>
+    </div>
+    <div class="form-group">
+        <label>Practice Type</label>
+        <select class="form-control" id="ddlPracticeType">
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Recruiter</label>
+        <select class="form-control" id="ddlRecruiter">
+
+        </select>
+    </div>
+    <input type="button" value="Save" id="btnSave" />
+</form>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            BindProjectStatusList();
+            BindProjectCatagoryList();
+            BindTimeSheetList();
+            BindProjectTypeList();
+            BindPracTypeList();
+            BindCIGList();
+            BindRecuriterList();
+            BindLocationList();
+            BindSubDomainList();
+            BindTSRList();
+            BindSalesPersonList();
+            BindPayRollList();
+            $("#btnSave").on("click", function () {
+                if (IsValidate()) {
+                    SaveData();
+                }
+            });
+        });
+
+        function IsValidate() {
+            return true;
+        }
+        function SaveData() {
+            let vm = {
+                CustomerName: "",
+                ProjectName: "",
+                ProjectId: "",
+                StartDate: "",
+                EndDate: ""
+            };
+            vm.CustomerName = $("#custName").val();
+            vm.ProjectName = $("#projectName").val();
+            vm.ProjectId = $("#Id").val();
+            vm.StartDate = $("#startDate").val();
+            vm.EndDate = $("#endDate").val();
+
+            console.log(vm);
+            $.ajax({
+                method: "POST",
+                url: "/Home/ProjectAdd",
+                dataType: "json",
+                data: vm,
+                success: function () { },
+                error: function () { }
+            });
+        }
+        function BindProjectStatusList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetProjectStatusKailash?parentId=1800",
+                success: function (data) {
+                    console.log(data);
+                    //ddlProjectStatus
+                },
+                error: function () { }
+            })
+        }
+        function BindProjectCatagoryList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetProjectCatagoryKailash?parentId=19491",
+                success: function (data) {
+                    console.log(data);
+                    //ddlProjectCatagory
+                },
+                error: function () { }
+            })
+        }
+        function BindTimeSheetList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetTimeSheetKailash?parentId=13120",
+                success: function (data) {
+                    console.log(data);
+                    //ddlTimeSheet
+                },
+                error: function () { }
+            })
+        }
+        function BindCIGList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetCIGKailash?parentId=10300",
+                success: function (data) {
+                    console.log(data);
+                    //ddlCIG
+                },
+                error: function () { }
+            })
+        }
+        function BindPracTypeList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetPracTypeKailash?parentId=15760",
+                success: function (data) {
+                    console.log(data);
+                    //ddlPracType
+                },
+                error: function () { }
+            })
+        }
+        function BindProjectTypeList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetProjectTypeKailash?parentId=4650",
+                success: function (data) {
+                    console.log(data);
+                    //ddlProjectType
+                },
+                error: function () { }
+            })
+        }
+        function BindRecuriterList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetRecruiterKailash",
+                success: function (data) {
+                    console.log(data);
+                    //ddlRecuriter
+                },
+                error: function () {}
+            })
+        }
+        function BindLocationList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetLocationKailash",
+                success: function (data) {
+                    console.log(data);
+                    //ddlLocation
+                },
+                error: function () { }
+            })
+        }
+        function BindSubDomainList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetSubDomainKailash",
+                success: function (data) {
+                    console.log(data);
+                    //ddlRecuriter
+                },
+                error: function () { }
+            })
+        }
+        function BindTSRList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetTSRKailash",
+                success: function (data) {
+                    console.log(data);
+                    //ddlTimeSheetRep
+                },
+                error: function () { }
+            })
+        }
+        function BindSalesPersonList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetSalesPersonKailash",
+                success: function (data) {
+                    console.log(data);
+                    //ddlSalesPerson
+                },
+                error: function () { }
+            })
+        }
+        function BindPayRollList() {
+            $.ajax({
+                method: "GET",
+                url: "/Home/GetPayRollKailash",
+                success: function (data) {
+                    console.log(data);
+                    //ddlPayrollState
+                },
+                error: function () { }
+            })
+        }
+    </script>
+}
