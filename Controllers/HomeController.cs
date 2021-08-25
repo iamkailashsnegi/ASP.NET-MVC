@@ -17,6 +17,8 @@ namespace MyProjectWebApp.Controllers
     {
         private SqlConnection con;
 
+        private Common _common;
+
         private void Connection()
         {
             string _conString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
@@ -37,7 +39,7 @@ namespace MyProjectWebApp.Controllers
 
             return View();
         }
-        
+
         public ActionResult Project()
         {
             Common objRepo = new Common();
@@ -53,24 +55,25 @@ namespace MyProjectWebApp.Controllers
             var appTSR = objRepo.GetTimeSheetRep();
             var appSP = objRepo.GetSalesPerson();
             var appPRS = objRepo.GetPayRoll();
+
             var emp = new ProjectAddEditViewModel
             {
                 ProjectStatusList = appProjSatus,
-                ProjectCatList= appProjCat,
-                ProjectTypeList=appProjType,
-                TimeSheetTypeList=appTime,
-                CIGList=appCIG,
-                PracTypeList= appPT,
-                RecruiterList= appRec,
-                LocationGroupList=appLoc,
-                SubDomainList=appSubDomain,
-                TSRList=appTSR,
-                SalesPersonList=appSP,
-                PayRollStateList=appPRS
+                ProjectCatList = appProjCat,
+                ProjectTypeList = appProjType,
+                TimeSheetTypeList = appTime,
+                CIGList = appCIG,
+                PracTypeList = appPT,
+                RecruiterList = appRec,
+                LocationGroupList = appLoc,
+                SubDomainList = appSubDomain,
+                TSRList = appTSR,
+                SalesPersonList = appSP,
+                PayRollStateList = appPRS
             };
             return View(emp);
         }
-     
+
         public bool Save(ProjectAddEditViewModel model)
         {
             Connection();
@@ -97,11 +100,11 @@ namespace MyProjectWebApp.Controllers
             con.Open();
             int i = cmd.ExecuteNonQuery();
             con.Close();
-            if(i>=1)
+            if (i >= 1)
             {
                 return true;
             }
-            else 
+            else
             {
                 return false;
             }
@@ -109,16 +112,17 @@ namespace MyProjectWebApp.Controllers
 
         public ActionResult GetList()
         {
-            return View();
+            var model = _common.GetProjectsList();
+            return View(model);
         }
 
         public ActionResult AddProject()
         {
             return View();
         }
-        
-        public ActionResult ProjectAdd() 
-        { 
+
+        public ActionResult ProjectAdd()
+        {
             return View();
         }
     }

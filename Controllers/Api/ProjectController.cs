@@ -11,6 +11,7 @@ namespace MyProjectWebApp.Controllers.Api
 {
     public class ProjectController : ApiController
     {
+        //POST Api/commands
         [HttpPost]
         [Route("Home/ProjectAddKailash")]
         public IHttpActionResult AddProject(ProjectController pm)

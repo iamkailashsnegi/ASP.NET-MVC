@@ -338,9 +338,23 @@ namespace MyProjectWebApp.Repo
             con.Close();
             return SelectListNew;
         }
-        public List<Project> GetProjectsList()
-        { 
-            return null;
+        public IList<Project> GetProjectsList()
+        {
+            IList<Project> SelectListNew = new List<Project>();
+
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Project_View_Kailash", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                }
+                con.Close();
+            }
+            return SelectListNew;
         }
     }
 }
