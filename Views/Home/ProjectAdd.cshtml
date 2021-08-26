@@ -39,7 +39,7 @@
     </div>
     <div class="form-group">
         <label>PayRoll State</label>
-        <select class="form-control" id="ddlPrState">
+        <select class="form-control" id="ddlPayrollState">
 
         </select>
     </div>
@@ -133,22 +133,47 @@
         }
         function SaveData() {
             let vm = {
-                CustomerName: "",
-                ProjectName: "",
-                ProjectId: "",
-                StartDate: "",
-                EndDate: ""
+                Cust_Name: "",
+                Project_Name: "",
+                Id: "",
+                SD: "",
+                ED: "",
+                Project_Status: "",
+                Location_Group: "",
+                PayRoll_State: "",
+                Sales_Person: "",
+                Proj_Cat: "",
+                Proj_Type: "",
+                Sub_Dom: "",
+                TSP: "",
+                CIG: "",
+                TimesheetType: "",
+                /*IVT: "",*/
+                Prac_Type: "",
+                Recruiter:""
             };
-            vm.CustomerName = $("#custName").val();
-            vm.ProjectName = $("#projectName").val();
-            vm.ProjectId = $("#Id").val();
-            vm.StartDate = $("#startDate").val();
-            vm.EndDate = $("#endDate").val();
-
+            vm.Cust_Name = $("#custName").val();
+            vm.Project_Name = $("#projectName").val();
+            vm.Id = $("#Id").val();
+            vm.SD = $("#startDate").val();
+            vm.ED = $("#endDate").val();
+            vm.Project_Status = $("#ddlProjectStatus").val();
+            vm.Location_Group = $("#ddlLocationGroup").val();
+            vm.PayRoll_State = $("#ddlPayrollState").val();
+            vm.Sales_Person = $("#endSalesPerson").val();
+            vm.Proj_Cat = $("#ddlProjectCatagory").val();
+            vm.Proj_Type = $("#ddlProjectType").val();
+            vm.Sub_Dom = $("#ddlSubDomain").val();
+            vm.TSP = $("#ddlTimesSheetRep").val();
+            vm.CIG = $("#ddlClientInvoiceGroup").val();
+            vm.TimesheetType = $("#ddlTimesheetType").val();
+            /*vm.IVT = $("#endDate").val();*/
+            vm.Prac_Type = $("#ddlPracticeType").val();
+            vm.Recruiter = $("#ddlRecruiter").val();
             console.log(vm);
             $.ajax({
                 method: "POST",
-                url: "/Home/ProjectAdd",
+                url: "/ProjectApi/Add",
                 dataType: "json",
                 data: vm,
                 success: function () { },
@@ -158,9 +183,12 @@
         function BindProjectStatusList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetProjectStatusKailash?parentId=1800",
+                url: "/ProjectApi/GetProjectStatus?parentId=1800",
                 success: function (data) {
                     console.log(data);
+                    $(data).each(function () {
+                        $("#ddlProjectStatus").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
                     //ddlProjectStatus
                 },
                 error: function () { }
@@ -169,9 +197,12 @@
         function BindProjectCatagoryList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetProjectCatagoryKailash?parentId=19491",
+                url: "/ProjectApi/GetProjectCatagory?parentId=19491",
                 success: function (data) {
                     console.log(data);
+                    $(data).each(function () {
+                        $("#ddlProjectCatagory").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
                     //ddlProjectCatagory
                 },
                 error: function () { }
@@ -180,10 +211,13 @@
         function BindTimeSheetList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetTimeSheetKailash?parentId=13120",
+                url: "/ProjectApi/GetTimeSheet?parentId=13120",
                 success: function (data) {
                     console.log(data);
-                    //ddlTimeSheet
+                    $(data).each(function () {
+                        $("#ddlTimesheetType").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
+                    //ddlTimeSheetType
                 },
                 error: function () { }
             })
@@ -191,10 +225,13 @@
         function BindCIGList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetCIGKailash?parentId=10300",
+                url: "/ProjectApi/GetCIG?parentId=10300",
                 success: function (data) {
                     console.log(data);
-                    //ddlCIG
+                    $(data).each(function () {
+                        $("#ddlClientInvoiceGroup").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
+                    //ddlClientInvoiceGroup
                 },
                 error: function () { }
             })
@@ -202,10 +239,13 @@
         function BindPracTypeList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetPracTypeKailash?parentId=15760",
+                url: "/ProjectApi/GetPracType?parentId=15760",
                 success: function (data) {
                     console.log(data);
-                    //ddlPracType
+                    $(data).each(function () {
+                        $("#ddlPracticeType").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
+                    //ddlPracticeType
                 },
                 error: function () { }
             })
@@ -213,9 +253,12 @@
         function BindProjectTypeList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetProjectTypeKailash?parentId=4650",
+                url: "/ProjectApi/GetProjectType?parentId=4650",
                 success: function (data) {
                     console.log(data);
+                    $(data).each(function () {
+                        $("#ddlProjectType").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
                     //ddlProjectType
                 },
                 error: function () { }
@@ -224,10 +267,13 @@
         function BindRecuriterList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetRecruiterKailash",
+                url: "/ProjectApi/GetRecruiter",
                 success: function (data) {
                     console.log(data);
-                    //ddlRecuriter
+                    $(data).each(function () {
+                        $("#ddlRecruiter").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
+                    //ddlRecruiter
                 },
                 error: function () {}
             })
@@ -235,10 +281,13 @@
         function BindLocationList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetLocationKailash",
+                url: "/ProjectApi/GetLocation",
                 success: function (data) {
                     console.log(data);
-                    //ddlLocation
+                    $(data).each(function () {
+                        $("#ddlLocationGroup").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
+                    //ddlLocationGroup
                 },
                 error: function () { }
             })
@@ -246,10 +295,13 @@
         function BindSubDomainList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetSubDomainKailash",
+                url: "/ProjectApi/GetSubDomain",
                 success: function (data) {
                     console.log(data);
-                    //ddlRecuriter
+                    $(data).each(function () {
+                        $("#ddlSubDomain").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
+                    //ddlSubDomain
                 },
                 error: function () { }
             })
@@ -257,9 +309,12 @@
         function BindTSRList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetTSRKailash",
+                url: "/ProjectApi/GetTSR",
                 success: function (data) {
                     console.log(data);
+                    $(data).each(function () {
+                        $("#ddlTimesSheetRep").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
                     //ddlTimeSheetRep
                 },
                 error: function () { }
@@ -268,9 +323,12 @@
         function BindSalesPersonList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetSalesPersonKailash",
+                url: "/ProjectApi/GetSalesPerson",
                 success: function (data) {
                     console.log(data);
+                    $(data).each(function () {
+                        $("#ddlSalesPerson").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
                     //ddlSalesPerson
                 },
                 error: function () { }
@@ -279,9 +337,12 @@
         function BindPayRollList() {
             $.ajax({
                 method: "GET",
-                url: "/Home/GetPayRollKailash",
+                url: "/ProjectApi/GetPayRoll",
                 success: function (data) {
                     console.log(data);
+                    $(data).each(function () {
+                        $("#ddlPayrollState").append($("<option></option>").val(this.ID).html(this.Name));
+                    });
                     //ddlPayrollState
                 },
                 error: function () { }

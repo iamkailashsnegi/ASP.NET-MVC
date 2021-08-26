@@ -19,7 +19,6 @@ namespace MyProjectWebApp.Repo
             con = new SqlConnection(_conString);
 
         }
-
         public List<SelectList> GetProjectStatus(int parentId)
         {
             List<SelectList> SelectListNew = new List<SelectList>();

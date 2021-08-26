@@ -17,7 +17,7 @@ namespace MyProjectWebApp.Controllers
     {
         private SqlConnection con;
 
-        private Common _common;
+        private Common repo;
 
         private void Connection()
         {
@@ -112,7 +112,7 @@ namespace MyProjectWebApp.Controllers
 
         public ActionResult GetList()
         {
-            var model = _common.GetProjectsList();
+            var model = repo.GetProjectsList();
             return View(model);
         }
 

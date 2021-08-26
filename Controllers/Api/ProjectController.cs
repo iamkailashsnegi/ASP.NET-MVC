@@ -1,4 +1,5 @@
-﻿using MyProjectWebApp.Repo;
+﻿using MyProjectWebApp.Models;
+using MyProjectWebApp.Repo;
 using MyProjectWebApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,14 @@ namespace MyProjectWebApp.Controllers.Api
     {
         //POST Api/commands
         [HttpPost]
-        [Route("Home/ProjectAddKailash")]
-        public IHttpActionResult AddProject(ProjectController pm)
+        [Route("ProjectApi/Add")]
+        public IHttpActionResult AddProject(Project pm)
         {
-            return Ok();
+            return Ok("Done");
         }
 
         [HttpGet]
-        [Route("Home/GetProjectStatusKailash")]
+        [Route("ProjectApi/GetProjectStatus")]
         public IHttpActionResult ProjectStatusList(int parentId)
         {
             Common objRepo = new Common();
@@ -30,7 +31,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Home/GetProjectCatagoryKailash")]
+        [Route("ProjectApi/GetProjectCatagory")]
         public IHttpActionResult ProjectCatList(int parentId)
         {
             Common objRepo = new Common();
@@ -40,7 +41,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Home/GetTimeSheetKailash")]
+        [Route("ProjectApi/GetTimeSheet")]
         public IHttpActionResult TimeSheetTypeList(int parentId)
         {
             Common objRepo = new Common();
@@ -50,7 +51,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Home/GetCIGKailash")]
+        [Route("ProjectApi/GetCIG")]
         public IHttpActionResult CIGList(int parentId)
         {
             Common objRepo = new Common();
@@ -60,7 +61,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Home/GetPracTypeKailash")]
+        [Route("ProjectApi/GetPracType")]
         public IHttpActionResult PracTypeList(int parentId)
         {
             Common objRepo = new Common();
@@ -70,7 +71,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Home/GetProjectTypeKailash")]
+        [Route("ProjectApi/GetProjectType")]
         public IHttpActionResult ProjectTypeList(int parentId)
         {
             Common objRepo = new Common();
@@ -80,7 +81,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Home/GetRecruiterKailash")]
+        [Route("ProjectApi/GetRecruiter")]
         public IHttpActionResult RecruiterList()
         {
             Common objRepo = new Common();
@@ -90,7 +91,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("Home/GetLocationKailash")]
+        [Route("ProjectApi/GetLocation")]
         public IHttpActionResult LocationGroupList()
         {
             Common objRepo = new Common();
@@ -99,7 +100,7 @@ namespace MyProjectWebApp.Controllers.Api
             return Ok(appLocation);
         }
         [HttpGet]
-        [Route("Home/GetSubDomainKailash")]
+        [Route("ProjectApi/GetSubDomain")]
         public IHttpActionResult SubDomainList()
         {
             Common objRepo = new Common();
@@ -108,7 +109,7 @@ namespace MyProjectWebApp.Controllers.Api
             return Ok(appSubDomain);
         }
         [HttpGet]
-        [Route("Home/GetTSRKailash")]
+        [Route("ProjectApi/GetTSR")]
         public IHttpActionResult TSRList()
         {
             Common objRepo = new Common();
@@ -117,7 +118,7 @@ namespace MyProjectWebApp.Controllers.Api
             return Ok(appTSR);
         }
         [HttpGet]
-        [Route("Home/GetSalesPersonKailash")]
+        [Route("ProjectApi/GetSalesPerson")]
         public IHttpActionResult SalesPersonList()
         {
             Common objRepo = new Common();
@@ -126,7 +127,7 @@ namespace MyProjectWebApp.Controllers.Api
             return Ok(appSalesPerson);
         }
         [HttpGet]
-        [Route("Home/GetPayRollKailash")]
+        [Route("ProjectApi/GetPayRoll")]
         public IHttpActionResult PayRollStateList()
         {
             Common objRepo = new Common();
