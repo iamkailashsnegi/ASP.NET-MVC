@@ -39,17 +39,66 @@
 
             $("#prjList").DataTable({
                 ajax: {
-                    url: "/ProjectApi/GetProjectStatus?parentId=1800",
+                    url: "/ProjectApi/GetProjectList",
                     dataSrc:""
                 },
                 columns: [
                     {
-                        data: "Id"
+                        data: "Cust_Name"
                     },
                     {
-                        data: "Name",
-                        render: function (data) { return "" + data }
-                    }]
+                        data: "Proj_Name"
+                        /*render: function (data) { return "" + data }*/
+                    },
+                    {
+                        data:"Proj_Id",
+                    },
+                    {
+                        data: "Start_Date",
+                    },
+                    {
+                        data: "End_Date",
+                    },
+                    {
+                        data: "Proj_Status",
+                    },
+                    {
+                        data: "Loc_Group",
+                    },
+                    {
+                        data: "PayRoll",
+                    },
+                    {
+                        data: "SalesPerson",
+                    },
+                    {
+                        data: "Proj_Cat",
+                    },
+                    {
+                        data: "Proj_Type",
+                    },
+                    {
+                        data: "Sub_Domain",
+                    },
+                    {
+                        data: "TimeSheetRep",
+                    },
+                    {
+                        data: "ClientInvoice",
+                    },
+                    {
+                        data: "TimeSheetType",
+                    },
+                    {
+                        data: "IsVMS",
+                    },
+                    {
+                        data: "Prac_Type",
+                    },
+                    {
+                        data: "Recruiter",
+                    }
+                ]
             });
 
         });

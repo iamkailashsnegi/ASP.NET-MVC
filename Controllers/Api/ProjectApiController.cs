@@ -11,14 +11,14 @@ namespace MyProjectWebApp.Controllers.Api
     public class ProjectApiController : ApiController
     {
 
-        //[HttpGet]
-        //[Route("ProjectApi/GetProjectStatus")]
-        //public IHttpActionResult GetProjectsList()
-        //{
-        //    Common objRepo = new Common();
-        //    object appProj = objRepo.GetList();
+        [HttpGet]
+        [Route("ProjectApi/GetProjectList")]
+        public IHttpActionResult ProjectsList()
+        {
+            Common objRepo = new Common();
+            object appProj = objRepo.GetProjectsList();
 
-        //    return Ok(appProj);
-        //}
+            return Ok(appProj);
+        }
     }
 }

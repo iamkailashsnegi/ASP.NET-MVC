@@ -2,113 +2,108 @@
 @{
     ViewBag.Title = "ProjectAdd";
 }
-
-<h2>ProjectAdd</h2>
+<p><h2>ProjectAdd</h2><hr /></p>
 <form>
-    <div class="form-group">
-        <label>Customer Name</label>
-        <input class="form-control" type="text" id="custName" />
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input class="form-control" type="text" id="custName" />
+        </div>
+        <div class="form-group">
+            <label>Project Name</label>
+            <input class="form-control" type="text" id="projectName" />
+        </div>
+        <div class="form-group">
+            <label>Project Id</label>
+            <input class="form-control" type="text" id="Id" />
+        </div>
+        <div class="form-group">
+            <label>Start Date</label>
+            <input class="form-control" type="date" id="startDate" />
+        </div>
+        <div class="form-group">
+            <label>End Date</label>
+            <input class="form-control" type="date" id="endDate" />
+        </div>
+        <div class="form-group">
+            <label>Project Status</label>
+            <select class="form-control" id="ddlProjectStatus">
+            </select>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Project Name</label>
-        <input class="form-control" type="text" id="projectName" />
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Location/Group</label>
+            <select class="form-control" id="ddlLocationGroup">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>PayRoll State</label>
+            <select class="form-control" id="ddlPayrollState">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Sales Person</label>
+            <select class="form-control" id="ddlSalesPerson">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Project Catagory</label>
+            <select class="form-control" id="ddlProjectCatagory">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Project Type</label>
+            <select class="form-control" id="ddlProjectType">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Sub-Domain</label>
+            <select class="form-control" id="ddlSubDomain">
+            </select>
+        </div>
     </div>
-    <div class="form-group">
-        <label>Project Id</label>
-        <input class="form-control" type="text" id="Id" />
-    </div>
-    <div class="form-group">
-        <label>Start Date</label>
-        <input class="form-control" type="date" id="startDate" />
-    </div>
-    <div class="form-group">
-        <label>End Date</label>
-        <input class="form-control" type="date" id="endDate" />
-    </div>
-    <div class="form-group">
-        <label>Project Status</label>
-        <select class="form-control" id="ddlProjectStatus">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Location/Group</label>
-        <select class="form-control" id="ddlLocationGroup">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>PayRoll State</label>
-        <select class="form-control" id="ddlPayrollState">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Sales Person</label>
-        <select class="form-control" id="ddlSalesPerson">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Project Catagory</label>
-        <select class="form-control" id="ddlProjectCatagory">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Project Type</label>
-        <select class="form-control" id="ddlProjectType">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Sub-Domain</label>
-        <select class="form-control" id="ddlSubDomain">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Times Sheet Representative</label>
-        <select class="form-control" id="ddlTimesSheetRep">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Client-Invoice Group</label>
-        <select class="form-control" id="ddlClientInvoiceGroup">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Timesheet Type</label>
-        <select class="form-control" id="ddlTimesheetType">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Is VMS Timesheet</label>
-        <input type="radio" id="yes" value="Yes" />
-        <label for="yes">Yes</label>
-        <input type="radio" id="no" value="No" />
-        <label for="no">No</label>
-    </div>
-    <div class="form-group">
-        <label>Practice Type</label>
-        <select class="form-control" id="ddlPracticeType">
-
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Recruiter</label>
-        <select class="form-control" id="ddlRecruiter">
-
-        </select>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Times Sheet Representative</label>
+            <select class="form-control" id="ddlTimesSheetRep">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Client-Invoice Group</label>
+            <select class="form-control" id="ddlClientInvoiceGroup">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Timesheet Type</label>
+            <select class="form-control" id="ddlTimesheetType">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Is VMS Timesheet</label>
+            <input type="radio" id="yes" value="Yes" />
+            <label for="yes">Yes</label>
+            <input type="radio" id="no" value="No" />
+            <label for="no">No</label>
+        </div>
+        <div class="form-group">
+            <label>Practice Type</label>
+            <select class="form-control" id="ddlPracticeType">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Recruiter</label>
+            <select class="form-control" id="ddlRecruiter">
+            </select>
+        </div>
     </div>
     <input type="button" value="Save" id="btnSave" />
 </form>
 @section scripts{
     <script>
         $(document).ready(function () {
+            //const projectStatus = 1800;
+            //bindProjectStatusList(ddlProjectStatus, projectStatus);
             BindProjectStatusList();
             BindProjectCatagoryList();
             BindTimeSheetList();
@@ -129,57 +124,98 @@
         });
 
         function IsValidate() {
-            return true;
+            let isValid = true;
+            if (!custNameValidationJQ()) {
+                isValid = false;
+            }
+            return isValid;
+        }
+        function clearMessageJQ(ele) {
+            $(ele).siblings('span.error').remove();
+        }
+
+        function addErrorMessageJQ(ele, msg) {
+            const errorCtrl = $('<span />').addClass('error').html(msg);
+            $(ele).closest('div').append(errorCtrl);
+        }
+
+        function custNameValidationJQ() {
+            let flag = true;
+            const ele = $('#custName');
+            clearMessageJQ(ele)
+            const Name = $(ele).val();
+            // console.log(Name);
+            if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
+                addErrorMessageJQ(custName, 'Name is not valid');
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
         }
         function SaveData() {
-            let vm = {
+            let project = {
                 Cust_Name: "",
                 Project_Name: "",
                 Id: "",
                 SD: "",
                 ED: "",
-                Project_Status:null,
-                Location_Group:null,
-                PayRoll_State:null,
-                Sales_Person: "",
+                Project_Status:"",
+                Location_Group:"",
+                PayRoll_State:"",
+                Sales_Person:"",
                 Proj_Cat: "",
                 Proj_Type: "",
                 Sub_Dom: "",
                 TSP: "",
                 CIG: "",
-                TimesheetType: "",
-                /*IVT: "",*/
-                Prac_Type: "",
+                TimesheetType:"",
+                IVT: "",
+                Prac_Type:"",
                 Recruiter:""
             };
-            vm.Cust_Name = $("#custName").val();
-            vm.Project_Name = $("#projectName").val();
-            vm.Id = $("#Id").val();
-            vm.SD = $("#startDate").val();
-            vm.ED = $("#endDate").val();
-            vm.Project_Status = $("#ddlProjectStatus").val();
-            vm.Location_Group = $("#ddlLocationGroup").val();
-            vm.PayRoll_State = $("#ddlPayrollState").val();
-            vm.Sales_Person = $("#endSalesPerson").val();
-            vm.Proj_Cat = $("#ddlProjectCatagory").val();
-            vm.Proj_Type = $("#ddlProjectType").val();
-            vm.Sub_Dom = $("#ddlSubDomain").val();
-            vm.TSP = $("#ddlTimesSheetRep").val();
-            vm.CIG = $("#ddlClientInvoiceGroup").val();
-            vm.TimesheetType = $("#ddlTimesheetType").val();
-            /*vm.IVT = $("#endDate").val();*/
-            vm.Prac_Type = $("#ddlPracticeType").val();
-            vm.Recruiter = $("#ddlRecruiter").val();
-            console.log(vm);
+            project.Cust_Name = $("#custName").val();
+            project.Project_Name = $("#projectName").val();
+            project.Id = $("#Id").val();
+            project.SD = $("#startDate").val();
+            project.ED = $("#endDate").val();
+            project.Project_Status = $("#ddlProjectStatus").val();
+            project.Location_Group = $("#ddlLocationGroup").val();
+            project.PayRoll_State = $("#ddlPayrollState").val();
+            project.Sales_Person = $("#endSalesPerson").val();
+            project.Proj_Cat = $("#ddlProjectCatagory").val();
+            project.Proj_Type = $("#ddlProjectType").val();
+            project.Sub_Dom = $("#ddlSubDomain").val();
+            project.TSP = $("#ddlTimesSheetRep").val();
+            project.CIG = $("#ddlClientInvoiceGroup").val();
+            project.TimesheetType = $("#ddlTimesheetType").val();
+            /*project.IVT = $("#endDate").val();*/
+            project.Prac_Type = $("#ddlPracticeType").val();
+            project.Recruiter = $("#ddlRecruiter").val();
+            console.log(project);
             $.ajax({
                 method: "POST",
                 url: "/ProjectApi/Add",
                 dataType: "json",
-                data: vm,
+                data: project,
                 success: function () { },
                 error: function () { }
             });
         }
+        //function bindProjectStatusList(ctrl, parentId) {
+        //    $.ajax({
+        //        method: "GET",
+        //        url: "/ProjectApi/GetProjectStatus?parentId=1800",
+        //        success: function (data) {
+        //            console.log(data);
+        //            $(data).each(function () {
+        //                $("#ddlProjectStatus").append($("<option></option>").val(this.ID).html(this.Name));
+        //            });
+        //            //ddlProjectStatus
+        //        },
+        //        error: function () { }
+        //    })
+        //}
         function BindProjectStatusList() {
             $.ajax({
                 method: "GET",

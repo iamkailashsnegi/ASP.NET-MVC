@@ -337,22 +337,53 @@ namespace MyProjectWebApp.Repo
             con.Close();
             return SelectListNew;
         }
-        public IList<Project> GetProjectsList()
+        public List<Project> GetProjectsList()
         {
-            IList<Project> SelectListNew = new List<Project>();
-
-            using (SqlConnection con = new SqlConnection())
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("Project_View_Kailash", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            DataSet ds = new DataSet();
+            List<Project> SelectListNew = new List<Project>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("Project_View_Kailash", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {
-                    DataSet ds = new DataSet();
                     da.Fill(ds);
                 }
-                con.Close();
+            if(ds.Tables.Count>0)
+            {
+                for (int i=0; i<ds.Tables[0].Rows.Count; i++)
+                {
+                    Project obj = new Project();
+                    obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
+                    obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
+                    obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
+                    //obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
+                    //obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
+                    obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
+                    obj.Location_Group = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Group"]);
+                    obj.PayRoll_State = Convert.ToString(ds.Tables[0].Rows[i]["PayRoll"]);
+                    obj.Sales_Person = Convert.ToString(ds.Tables[0].Rows[i]["SalesPerson"]);
+                    obj.Proj_Cat = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Cat"]);
+                    obj.Proj_Type = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Type"]);
+                    obj.Sub_Dom = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Domain"]);
+                    obj.TSP= Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetRep"]);
+                    obj.CIG = Convert.ToString(ds.Tables[0].Rows[i]["CLientInvoice"]);
+                    obj.TimesheetType = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetType"]);
+                    //obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
+                    obj.Prac_Type= Convert.ToString(ds.Tables[0].Rows[i]["Prac_Type"]);
+                    obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
+                    SelectListNew.Add(obj);
+                }
             }
+            //foreach (var dr in ds.Tables[0].Rows)
+            //{
+            //    Project obj = new Project();
+            //    obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[0]["Cust_Name"]);
+            //    obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[0]["Proj_Name"]);
+            //    obj.Id = Convert.ToInt32(ds.Tables[0].Rows[0]["Proj_Id"]);
+            //    SelectListNew.Add(obj);
+            //}
+            //con.Close();
             return SelectListNew;
         }
     }

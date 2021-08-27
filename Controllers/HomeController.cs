@@ -17,8 +17,6 @@ namespace MyProjectWebApp.Controllers
     {
         private SqlConnection con;
 
-        private Common repo;
-
         private void Connection()
         {
             string _conString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
@@ -55,6 +53,7 @@ namespace MyProjectWebApp.Controllers
             var appTSR = objRepo.GetTimeSheetRep();
             var appSP = objRepo.GetSalesPerson();
             var appPRS = objRepo.GetPayRoll();
+            var appGPL = objRepo.GetProjectsList();
 
             var emp = new ProjectAddEditViewModel
             {
@@ -69,6 +68,7 @@ namespace MyProjectWebApp.Controllers
                 SubDomainList = appSubDomain,
                 TSRList = appTSR,
                 SalesPersonList = appSP,
+                ProjectList=appGPL,
                 PayRollStateList = appPRS
             };
             return View(emp);
@@ -112,8 +112,8 @@ namespace MyProjectWebApp.Controllers
 
         public ActionResult GetList()
         {
-            var model = repo.GetProjectsList();
-            return View(model);
+            var result = new Repo.Common().GetProjectsList();
+            return View(result);
         }
 
         public ActionResult AddProject()
