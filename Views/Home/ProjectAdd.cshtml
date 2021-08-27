@@ -124,35 +124,36 @@
         });
 
         function IsValidate() {
-            let isValid = true;
-            if (!custNameValidationJQ()) {
-                isValid = false;
-            }
-            return isValid;
+            //let isValid = true;
+            //if (!custNameValidationJQ()) {
+            //    isValid = false;
+            //}
+            //return isValid;
+            return true;
         }
-        function clearMessageJQ(ele) {
-            $(ele).siblings('span.error').remove();
-        }
+        //function clearMessageJQ(ele) {
+        //    $(ele).siblings('span.error').remove();
+        //}
 
-        function addErrorMessageJQ(ele, msg) {
-            const errorCtrl = $('<span />').addClass('error').html(msg);
-            $(ele).closest('div').append(errorCtrl);
-        }
+        //function addErrorMessageJQ(ele, msg) {
+        //    const errorCtrl = $('<span />').addClass('error').html(msg);
+        //    $(ele).closest('div').append(errorCtrl);
+        //}
 
-        function custNameValidationJQ() {
-            let flag = true;
-            const ele = $('#custName');
-            clearMessageJQ(ele)
-            const Name = $(ele).val();
-            // console.log(Name);
-            if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
-                addErrorMessageJQ(custName, 'Name is not valid');
-                flag = false;
-            } else {
-                flag = true;
-            }
-            return flag;
-        }
+        //function custNameValidationJQ() {
+        //    let flag = true;
+        //    const ele = $('#custName');
+        //    clearMessageJQ(ele)
+        //    const Name = $(ele).val();
+        //    // console.log(Name);
+        //    if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
+        //        addErrorMessageJQ(custName, 'Name is not valid');
+        //        flag = false;
+        //    } else {
+        //        flag = true;
+        //    }
+        //    return flag;
+        //}
         function SaveData() {
             let project = {
                 Cust_Name: "",
@@ -170,7 +171,7 @@
                 TSP: "",
                 CIG: "",
                 TimesheetType:"",
-                IVT: "",
+                IVT:"",
                 Prac_Type:"",
                 Recruiter:""
             };
@@ -179,19 +180,19 @@
             project.Id = $("#Id").val();
             project.SD = $("#startDate").val();
             project.ED = $("#endDate").val();
-            project.Project_Status = $("#ddlProjectStatus").val();
-            project.Location_Group = $("#ddlLocationGroup").val();
-            project.PayRoll_State = $("#ddlPayrollState").val();
-            project.Sales_Person = $("#endSalesPerson").val();
-            project.Proj_Cat = $("#ddlProjectCatagory").val();
-            project.Proj_Type = $("#ddlProjectType").val();
-            project.Sub_Dom = $("#ddlSubDomain").val();
-            project.TSP = $("#ddlTimesSheetRep").val();
-            project.CIG = $("#ddlClientInvoiceGroup").val();
-            project.TimesheetType = $("#ddlTimesheetType").val();
-            /*project.IVT = $("#endDate").val();*/
-            project.Prac_Type = $("#ddlPracticeType").val();
-            project.Recruiter = $("#ddlRecruiter").val();
+            project.Project_Status = $("#ddlProjectStatus :selected").text();
+            project.Location_Group = $("#ddlLocationGroup :selected").text();
+            project.PayRoll_State = $("#ddlPayrollState :selected").text();
+            project.Sales_Person = $("#ddlSalesPerson :selected").text();
+            project.Proj_Cat = $("#ddlProjectCatagory :selected").text();
+            project.Proj_Type = $("#ddlProjectType :selected").text();
+            project.Sub_Dom = $("#ddlSubDomain :selected").text();
+            project.TSP = $("#ddlTimesSheetRep :selected").text();
+            project.CIG = $("#ddlClientInvoiceGroup :selected").text();
+            project.TimesheetType = $("#ddlTimesheetType :selected").text();
+            project.IVT = $("input[type='radio']:checked").val();
+            project.Prac_Type = $("#ddlPracticeType :selected").text();
+            project.Recruiter = $("#ddlRecruiter :selected").text();
             console.log(project);
             $.ajax({
                 method: "POST",
