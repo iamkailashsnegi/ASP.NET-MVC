@@ -141,6 +141,7 @@
     <Compile Include="Models\SelectList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\Common.cs" />
+    <Compile Include="Repo\ProjectSaveData.cs" />
     <Compile Include="ViewModel\ProjectAddEditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -342,7 +342,7 @@ namespace MyProjectWebApp.Repo
             DataSet ds = new DataSet();
             List<Project> SelectListNew = new List<Project>();
             Connection();
-            SqlCommand cmd = new SqlCommand("Project_View_Kailash", con);
+            SqlCommand cmd = new SqlCommand("All_ProjectDetails_Kailash", con);
             cmd.CommandType = CommandType.StoredProcedure;
             con.Open();
             using (SqlDataAdapter da = new SqlDataAdapter(cmd))
@@ -357,8 +357,8 @@ namespace MyProjectWebApp.Repo
                     obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
                     obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
                     obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
-                    //obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
-                    //obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
+                    obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
+                    obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
                     obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
                     obj.Location_Group = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Group"]);
                     obj.PayRoll_State = Convert.ToString(ds.Tables[0].Rows[i]["PayRoll"]);
@@ -375,15 +375,6 @@ namespace MyProjectWebApp.Repo
                     SelectListNew.Add(obj);
                 }
             }
-            //foreach (var dr in ds.Tables[0].Rows)
-            //{
-            //    Project obj = new Project();
-            //    obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[0]["Cust_Name"]);
-            //    obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[0]["Proj_Name"]);
-            //    obj.Id = Convert.ToInt32(ds.Tables[0].Rows[0]["Proj_Id"]);
-            //    SelectListNew.Add(obj);
-            //}
-            //con.Close();
             return SelectListNew;
         }
     }

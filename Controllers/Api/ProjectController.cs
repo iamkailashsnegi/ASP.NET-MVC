@@ -17,7 +17,9 @@ namespace MyProjectWebApp.Controllers.Api
         [Route("ProjectApi/Add")]
         public IHttpActionResult AddProject(Project pm)
         {
-            return Ok("Done");
+            ProjectSaveData objRepo = new ProjectSaveData();
+            var saveData = objRepo.AddProject(pm);
+            return Ok(saveData);
         }
 
         [HttpGet]

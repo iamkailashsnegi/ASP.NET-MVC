@@ -25,11 +25,11 @@ namespace MyProjectWebApp.Models
 
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
-        public string SD { get; set; }
+        public DateTime SD { get; set; }
 
         [Display(Name = "End Date")]
         [DataType(DataType.Date)]
-        public string ED { get; set; }
+        public DateTime ED { get; set; }
 
         [Required]
         [Display(Name = "Project Status")]
@@ -74,7 +74,7 @@ namespace MyProjectWebApp.Models
 
         [Display(Name = "Is VMS Timesheet")]
         [Required(ErrorMessage = "Please Select")]
-        public bool IVT { get; set; }
+        public int IVT { get; set; }
 
         [Display(Name = "Practice Type")]
         [Required(ErrorMessage = "Please Select")]
