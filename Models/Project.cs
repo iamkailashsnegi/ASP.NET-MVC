@@ -74,7 +74,7 @@ namespace MyProjectWebApp.Models
 
         [Display(Name = "Is VMS Timesheet")]
         [Required(ErrorMessage = "Please Select")]
-        public int IVT { get; set; }
+        public string IVT { get; set; }
 
         [Display(Name = "Practice Type")]
         [Required(ErrorMessage = "Please Select")]

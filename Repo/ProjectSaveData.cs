@@ -43,7 +43,7 @@ namespace MyProjectWebApp.Repo
             cmd.Parameters.AddWithValue("@Prac_Type", Proj.Prac_Type);
             cmd.Parameters.AddWithValue("@Recruiter", Proj.Recruiter);
             con.Open();
-            int i=cmd.ExecuteNonQuery();
+            int i = cmd.ExecuteNonQuery();
             con.Close();
             if (i >= 1)
             {

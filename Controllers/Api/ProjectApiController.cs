@@ -10,15 +10,5 @@ namespace MyProjectWebApp.Controllers.Api
 {
     public class ProjectApiController : ApiController
     {
-
-        [HttpGet]
-        [Route("ProjectApi/GetProjectList")]
-        public IHttpActionResult ProjectsList()
-        {
-            Common objRepo = new Common();
-            object appProj = objRepo.GetProjectsList();
-
-            return Ok(appProj);
-        }
     }
 }

@@ -362,6 +362,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\ProjectAdd\" />
     <Folder Include="Views\Sample\" />
+    <Folder Include="Views\SaveProject\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

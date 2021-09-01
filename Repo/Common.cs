@@ -369,7 +369,7 @@ namespace MyProjectWebApp.Repo
                     obj.TSP= Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetRep"]);
                     obj.CIG = Convert.ToString(ds.Tables[0].Rows[i]["CLientInvoice"]);
                     obj.TimesheetType = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetType"]);
-                    //obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
+                    obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
                     obj.Prac_Type= Convert.ToString(ds.Tables[0].Rows[i]["Prac_Type"]);
                     obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
                     SelectListNew.Add(obj);

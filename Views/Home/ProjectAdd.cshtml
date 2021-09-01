@@ -80,7 +80,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Is VMS Timesheet</label>
+            <label id="radio_vms">Is VMS Timesheet</label>
             <input type="radio" id="yes" value="Yes" />
             <label for="yes">Yes</label>
             <input type="radio" id="no" value="No" />
@@ -124,30 +124,115 @@
         });
 
         function IsValidate() {
-            //let isValid = true;
-            //if (!custNameValidationJQ()) {
-            //    isValid = false;
+            let flag = true;
+            if (!custNameValidationJQ()) {
+                flag = false;
+            }
+            if (!projNameValidationJQ()) {
+                flag = false;
+            }
+            if (!projIdValidationJQ()) {
+                flag = false;
+            }
+            if (!dateValidationJQ())
+            {
+                flag = false;
+            }
+            if (!ddlProjStatCheckJQ())
+            {
+                flag = false;
+            }
+            //if (!radioButtonJQ())
+            //{
+            //    flag = false;
             //}
-            //return isValid;
             return true;
         }
-        //function clearMessageJQ(ele) {
-        //    $(ele).siblings('span.error').remove();
-        //}
+        function clearMessageJQ(ele) {
+            $(ele).siblings('span.error').remove();
+        }
 
-        //function addErrorMessageJQ(ele, msg) {
-        //    const errorCtrl = $('<span />').addClass('error').html(msg);
-        //    $(ele).closest('div').append(errorCtrl);
-        //}
+        function addErrorMessageJQ(ele, msg) {
+            const errorCtrl = $('<span />').addClass('error').html(msg);
+            $(ele).closest('div').append(errorCtrl);
+        }
 
-        //function custNameValidationJQ() {
+        function custNameValidationJQ() {
+            let flag = true;
+            const ele = $('#custName');
+            clearMessageJQ(ele)
+            const Name = $(ele).val();
+            // console.log(Name);
+            if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
+                addErrorMessageJQ(custName, 'Name is not valid');
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+        function projNameValidationJQ() {
+            let flag = true;
+            const ele = $('#projectName');
+            clearMessageJQ(ele)
+            const Name = $(ele).val();
+            // console.log(Name);
+            if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
+                addErrorMessageJQ(projectName, 'Name is not valid');
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+        function projIdValidationJQ() {
+            let flag = true;
+            const ele = $('#Id');
+            clearMessageJQ(ele)
+            const Name = $(ele).val();
+            // console.log(Name);
+            if (Name === "" || Name.split('')[0] == 0 || Name.length!==7) {
+                addErrorMessageJQ(Id, 'Id is not valid');
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+        function dateValidationJQ() {
+            let flag = true;
+            const ele = $("#startDate");
+            clearMessageJQ(ele)
+            const selectedDate = new Date($(ele).val());
+            // console.log(selectedDate);
+            const minDate = new Date('01/01/2000');
+            const maxDate = new Date();
+            if (selectedDate <= minDate || selectedDate >= maxDate) {
+                addErrorMessageJQ(ele, 'Date is not valid');
+                flag = false;
+            }
+            return flag;
+        }
+        function ddlProjStatCheckJQ() {
+            let flag = true;
+            const ele = $('#ddlProjectStatus');
+            clearMessageJQ(ele)
+            const projStatName = $(ele).val();
+            if (projStatName === "") {
+                addErrorMessageJQ(ele);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+        //function radioButtonJQ() {
         //    let flag = true;
-        //    const ele = $('#custName');
+        //    const ele = $('input[name]:checked');
         //    clearMessageJQ(ele)
-        //    const Name = $(ele).val();
-        //    // console.log(Name);
-        //    if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
-        //        addErrorMessageJQ(custName, 'Name is not valid');
+        //    const radioBut = $(ele).val();
+        //    if ($("input[name='Gender']:checked").length == 0) {
+        //        addErrorMessageJQ(ele);
         //        flag = false;
         //    } else {
         //        flag = true;
@@ -180,25 +265,25 @@
             project.Id = $("#Id").val();
             project.SD = $("#startDate").val();
             project.ED = $("#endDate").val();
-            project.Project_Status = $("#ddlProjectStatus").val();
-            project.Location_Group = $("#ddlLocationGroup").val();
-            project.PayRoll_State = $("#ddlPayrollState").val();
-            project.Sales_Person = $("#ddlSalesPerson").val();
-            project.Proj_Cat = $("#ddlProjectCatagory").val();
-            project.Proj_Type = $("#ddlProjectType").val();
-            project.Sub_Dom = $("#ddlSubDomain").val();
-            project.TSP = $("#ddlTimesSheetRep").val();
-            project.CIG = $("#ddlClientInvoiceGroup").val();
-            project.TimesheetType = $("#ddlTimesheetType").val();
+            project.Project_Status = $("#ddlProjectStatus :selected").text();
+            project.Location_Group = $("#ddlLocationGroup :selected").text();
+            project.PayRoll_State = $("#ddlPayrollState :selected").text();
+            project.Sales_Person = $("#ddlSalesPerson :selected").text();
+            project.Proj_Cat = $("#ddlProjectCatagory :selected").text();
+            project.Proj_Type = $("#ddlProjectType :selected").text();
+            project.Sub_Dom = $("#ddlSubDomain :selected").text();
+            project.TSP = $("#ddlTimesSheetRep :selected").text();
+            project.CIG = $("#ddlClientInvoiceGroup :selected").text();
+            project.TimesheetType = $("#ddlTimesheetType :selected").text();
             project.IVT = $("input[type='radio']:checked").val();
-            project.Prac_Type = $("#ddlPracticeType").val();
-            project.Recruiter = $("#ddlRecruiter").val();
+            project.Prac_Type = $("#ddlPracticeType :selected").text();
+            project.Recruiter = $("#ddlRecruiter :selected").text();
             console.log(project);
             $.ajax({
                 method: "POST", //HTTP POST Method
                 url: "/ProjectApi/Add", //Controller/View
                 dataType: "json",
-                data: JSON.stringify(proj),
+                data: project,
                 success: function () { },
                 error: function () { }
             });
