@@ -23,6 +23,12 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
+        public string Edit(int id)
+        {
+            return "value";
+        }
+
+        [HttpGet]
         [Route("ProjectApi/GetProjectStatus")]
         public IHttpActionResult ProjectStatusList(int parentId)
         {
