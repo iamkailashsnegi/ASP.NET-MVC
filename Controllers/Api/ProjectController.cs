@@ -22,11 +22,12 @@ namespace MyProjectWebApp.Controllers.Api
             return Ok(saveData);
         }
 
-        [HttpGet]
-        public string Edit(int id)
-        {
-            return "value";
-        }
+        //[HttpGet]
+        //[Route()]
+        //public IHttpActionResult Edit(EditProject ep)
+        //{
+        //    var pro = HomeController.Where(m => m.Project_Id);
+        //}
 
         [HttpGet]
         [Route("ProjectApi/GetProjectStatus")]
