@@ -138,21 +138,21 @@ namespace MyProjectWebApp.Repo
             DataSet ds = new DataSet();
             List<Project> SelectListNew = new List<Project>();
             Connection();
-            SqlCommand cmd = new SqlCommand("All_ProjectDetails_Kailash", con);
-            cmd.CommandType = CommandType.StoredProcedure;
             con.Open();
+            SqlCommand cmd = new SqlCommand("EditUpdateProjectDetails_Training_Kailash", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Proj_Id", Id);
             using (SqlDataAdapter da = new SqlDataAdapter(cmd))
             {
                 da.Fill(ds);
             }
-            if (ds.Tables.Count > 0)
+            if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     Project obj = new Project();
                     obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
                     obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
-                    obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
                     obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
                     obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
                     obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
@@ -168,7 +168,6 @@ namespace MyProjectWebApp.Repo
                     obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
                     obj.Prac_Type = Convert.ToString(ds.Tables[0].Rows[i]["Prac_Type"]);
                     obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
-                    SelectListNew.Add(obj);
                 }
             }
             return SelectListNew;
