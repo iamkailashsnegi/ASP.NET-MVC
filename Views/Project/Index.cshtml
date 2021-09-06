@@ -4,7 +4,31 @@
 }
 
 <h2>Projects List</h2>
-
+<div class="col_md_3">
+    <div class="form-group">
+        <label>Project Type</label>
+        <select class="form-control" id="ddlProjectType">
+        </select>
+    </div>
+</div>
+<div class="col_md_3">
+    <div class="form-group">
+        <label>Practice Type</label>
+        <select class="form-control" id="ddlPracticeType">
+        </select>
+    </div>
+</div>
+<div class="col_md_3">
+    <div class="form-group">
+        <label>Search</label>
+        <input class="form-control" type="text" id="search" />
+    </div>
+</div>
+<div class="col_md_3">
+    <div class="form-group">
+        <input type="button" value="Submit" id="btnSearch" />
+    </div>
+</div>
 <table id="prjList" class="table-bordered table-striped">
     <thead>
         <tr>
@@ -26,6 +50,7 @@
             <th>Is VMS Timesheet</th>
             <th>Practice Type</th>
             <th>Recuriter</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -35,22 +60,58 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+            BindProjectTypeList();
+            BindPracTypeList();
+            $("#btnSearch").on("click", function () {
+                if (IsValidate()) {
+                    SaveData();
+                }
+            });
+            function BindPracTypeList() {
+                $.ajax({
+                    method: "GET",
+                    url: "/ProjectApi/GetPracType?parentId=15760",
+                    success: function (data) {
+                        //console.log(data);
+                        $(data).each(function () {
+                            $("#ddlPracticeType").append($("<option></option>").val(this.ID).html(this.Name));
+                        });
+                        //ddlPracticeType
+                    },
+                    error: function () { }
+                })
+            }
+            function BindProjectTypeList() {
+                $.ajax({
+                    method: "GET",
+                    url: "/ProjectApi/GetProjectType?parentId=4650",
+                    success: function (data) {
+                        //console.log(data);
+                        $(data).each(function () {
+                            $("#ddlProjectType").append($("<option></option>").val(this.ID).html(this.Name));
+                        });
+                        //ddlProjectType
+                    },
+                    error: function () { }
+                })
+            }
 
             $("#prjList").DataTable({
                 ajax: {
                     url: "/ProjectApi/GetProjectList",
-                    dataSrc:""
+                    dataSrc: ""
                 },
                 columns: [
                     {
                         data: "Cust_Name"
+                        /*"searchable": false*/
                     },
                     {
                         data: "Project_Name"
                         /*render: function (data) { return "" + data }*/
                     },
                     {
-                        data:"Id",
+                        data: "Id",
                     },
                     {
                         data: "SD",
@@ -96,11 +157,20 @@
                     },
                     {
                         data: "Recruiter",
+                    },
+                    {
+                        //edit button creation
+                        render: function (data, type, row) {
+                            return createButton('edit', row.Id);
+                        }
                     }
                 ]
             });
 
         });
-
+        function createButton(buttonType, rowID) {
+            var buttonText = buttonType == "edit" ? "Edit" : "Delete";
+            return '<button class="' + buttonType + '" type="button" onclick="http://localhost:60628/Home/Edit?12345">' + buttonText + '</button>';
+        }
     </script>
 }

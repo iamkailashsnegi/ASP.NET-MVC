@@ -57,51 +57,53 @@ namespace MyProjectWebApp.Repo
             }
         }
 
-        public string Edit(Project Proj)
+        public string Edit(int Id)
         {
+            //string a;
             Connection();
-            SqlCommand cmd = new SqlCommand("Project_Kailash_Training", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Cust_Name", Proj.Cust_Name);
-            cmd.Parameters.AddWithValue("@Proj_Name", Proj.Project_Name);
-            cmd.Parameters.AddWithValue("@Proj_Id", Proj.Id);
-            cmd.Parameters.AddWithValue("@Start_Date", Proj.SD);
-            cmd.Parameters.AddWithValue("@End_Date", Proj.ED);
-            cmd.Parameters.AddWithValue("@Proj_Status", Proj.Project_Status);
-            cmd.Parameters.AddWithValue("@Loc_Group", Proj.Location_Group);
-            cmd.Parameters.AddWithValue("@PayRoll", Proj.PayRoll_State);
-            cmd.Parameters.AddWithValue("@SalesPerson", Proj.Sales_Person);
-            cmd.Parameters.AddWithValue("@Proj_Cat", Proj.Proj_Cat);
-            cmd.Parameters.AddWithValue("@Proj_Type", Proj.Proj_Type);
-            cmd.Parameters.AddWithValue("@Sub_Domain", Proj.Sub_Dom);
-            cmd.Parameters.AddWithValue("@TimeSheetRep", Proj.TSP);
-            cmd.Parameters.AddWithValue("@ClientInvoice", Proj.CIG);
-            cmd.Parameters.AddWithValue("@TimeSheetType", Proj.TimesheetType);
-            cmd.Parameters.AddWithValue("@IsVMS", Proj.IVT);
-            cmd.Parameters.AddWithValue("@Prac_Type", Proj.Prac_Type);
-            cmd.Parameters.AddWithValue("@Recruiter", Proj.Recruiter);
+            DataSet ds = new DataSet();
             con.Open();
-            int i = cmd.ExecuteNonQuery();
-            con.Close();
-            if (i >= 1)
+            SqlCommand cmd = new SqlCommand("EditUpdateProjectDetails_Training_Kailash", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Proj_Id", Id);
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
             {
-                return "Edited Successfully";
-
+                da.Fill(ds);
             }
-            else
+            if (ds.Tables[0].Rows.Count > 0)
             {
-                return "Not Edited";
-
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    Project obj = new Project();
+                    obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
+                    obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
+                    obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
+                    obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
+                    obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
+                    obj.Location_Group = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Group"]);
+                    obj.PayRoll_State = Convert.ToString(ds.Tables[0].Rows[i]["PayRoll"]);
+                    obj.Sales_Person = Convert.ToString(ds.Tables[0].Rows[i]["SalesPerson"]);
+                    obj.Proj_Cat = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Cat"]);
+                    obj.Proj_Type = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Type"]);
+                    obj.Sub_Dom = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Domain"]);
+                    obj.TSP = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetRep"]);
+                    obj.CIG = Convert.ToString(ds.Tables[0].Rows[i]["CLientInvoice"]);
+                    obj.TimesheetType = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetType"]);
+                    obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
+                    obj.Prac_Type = Convert.ToString(ds.Tables[0].Rows[i]["Prac_Type"]);
+                    obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
+                }
             }
+            return "a";
         }
         public string Update(Project Proj)
         {
             Connection();
-            SqlCommand cmd = new SqlCommand("Project_Kailash_Training", con);
+            SqlCommand cmd = new SqlCommand("EditProjectDetails_Training_Kailash", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Cust_Name", Proj.Cust_Name);
             cmd.Parameters.AddWithValue("@Proj_Name", Proj.Project_Name);
-            cmd.Parameters.AddWithValue("@Proj_Id", Proj.Id);
+            //cmd.Parameters.AddWithValue("@Proj_Id", Proj.Id);
             cmd.Parameters.AddWithValue("@Start_Date", Proj.SD);
             cmd.Parameters.AddWithValue("@End_Date", Proj.ED);
             cmd.Parameters.AddWithValue("@Proj_Status", Proj.Project_Status);
@@ -131,6 +133,45 @@ namespace MyProjectWebApp.Repo
 
             }
         }
-
+        public List<Project> GetEditList()
+        {
+            DataSet ds = new DataSet();
+            List<Project> SelectListNew = new List<Project>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("All_ProjectDetails_Kailash", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                da.Fill(ds);
+            }
+            if (ds.Tables.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    Project obj = new Project();
+                    obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
+                    obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
+                    obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
+                    obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
+                    obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
+                    obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
+                    obj.Location_Group = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Group"]);
+                    obj.PayRoll_State = Convert.ToString(ds.Tables[0].Rows[i]["PayRoll"]);
+                    obj.Sales_Person = Convert.ToString(ds.Tables[0].Rows[i]["SalesPerson"]);
+                    obj.Proj_Cat = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Cat"]);
+                    obj.Proj_Type = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Type"]);
+                    obj.Sub_Dom = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Domain"]);
+                    obj.TSP = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetRep"]);
+                    obj.CIG = Convert.ToString(ds.Tables[0].Rows[i]["CLientInvoice"]);
+                    obj.TimesheetType = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetType"]);
+                    obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
+                    obj.Prac_Type = Convert.ToString(ds.Tables[0].Rows[i]["Prac_Type"]);
+                    obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
+                    SelectListNew.Add(obj);
+                }
+            }
+            return SelectListNew;
+        }
     }
 }

@@ -22,12 +22,14 @@ namespace MyProjectWebApp.Controllers.Api
             return Ok(saveData);
         }
 
-        //[HttpGet]
-        //[Route()]
-        //public IHttpActionResult Edit(EditProject ep)
-        //{
-        //    var pro = HomeController.Where(m => m.Project_Id);
-        //}
+        [HttpPost]
+        [Route("ProjectApi/Edit")]
+        public IHttpActionResult Edit(Project ep, int Id)
+        {
+            ProjectSaveData objRepo = new ProjectSaveData();
+            var editData = objRepo.Edit(Id);
+            return Ok(editData);
+        }
 
         [HttpGet]
         [Route("ProjectApi/GetProjectStatus")]

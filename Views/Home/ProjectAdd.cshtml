@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ProjectAdd";
 }
-<p><h2>ProjectAdd</h2><hr /></p>
+<p><h2>Manage Projects</h2><hr /></p>
 <form>
     <div class="col-md-4">
         <div class="form-group">
@@ -97,7 +97,7 @@
             </select>
         </div>
     </div>
-    <input type="button" value="Save" id="btnSave" />
+    <input type="button" value="Submit" id="btnSave" />
 </form>
 @section scripts{
     <script>
@@ -116,12 +116,51 @@
             BindTSRList();
             BindSalesPersonList();
             BindPayRollList();
-            $("#btnSave").on("click", function () {
+            $("#btnSave").on("click",
+                //function ()
+                (event) => {
+                event.preventDefault();
                 if (IsValidate()) {
                     SaveData();
                 }
             });
         });
+
+        //$(document).on('input', 'input[type=text]', (event) => {
+        //    const $ctrl = event.target;
+        //    const ctrlId = $($ctrl).attr('id');
+        //    if (ctrlId === 'txtFName') {
+        //        fNameValidationJQ();
+        //    }
+        //    if (ctrlId === 'txtZip') {
+        //        zipCodeValidationJQ();
+        //    }
+        //    if (ctrlId === 'txtMobile') {
+        //        mobileValidationJQ();
+        //    }
+        //    if (ctrlId === 'txtEmail') {
+        //        emailValidationJQ();
+        //    }
+        //    if (ctrlId === 'txtJobTitle') {
+        //        jobTitleJQ();
+        //    }
+        //});
+        //$(document).on('change', (event) => {
+        //    const $ctrl = event.target;
+        //    const ctrlId = $($ctrl).attr('id');
+        //    if (ctrlId === 'countryColle') {
+        //        countryCheckJQ();
+        //    }
+        //    if (ctrlId === 'stateColle') {
+        //        stateCheckJQ();
+        //    }
+        //    if (ctrlId === 'cityColle') {
+        //        cityCheckJQ();
+        //    }
+        //    if (ctrlId === 'txtJobStartDate') {
+        //        dateValidationJQ();
+        //    }
+        //});
 
         function IsValidate() {
             let flag = true;
