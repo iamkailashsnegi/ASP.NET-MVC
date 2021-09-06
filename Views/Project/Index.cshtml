@@ -60,6 +60,14 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+            var table = $('#example').DataTable({
+                paging: false,
+                bFilter: false,
+                ordering: false,
+                searching: false,
+                dom: 't'         // This shows just the table
+            });
+
             BindProjectTypeList();
             BindPracTypeList();
             $("#btnSearch").on("click", function () {
