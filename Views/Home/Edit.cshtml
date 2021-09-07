@@ -121,38 +121,36 @@
                 GetData();
             })
             $("#btnUpdate").on("click", function () {
-                    SaveData();
+                SaveData();
             });
         });
-            function GetData()
-            {
-                $("#custName").val();
-                $("#projectName").val();
-                $("#Id").val();
-                $("#startDate").val();
-                $("#endDate").val();
-                $("#ddlProjectStatus").val("1800");
-                $("#ddlLocationGroup").val();
-                $("#ddlPayrollState").val();
-                $("#ddlSalesPerson").val();
-                $("#ddlProjectCatagory").val("19491");
-                $("#ddlSubDomain").val();
-                $("#ddlTimesSheetRep").val();
-                $("#ddlClientInvoiceGroup").val("10300");
-                $("#ddlTimesheetType").val("13120");
-                $("input[name='radioName']:checked").val();
-                $("#ddlPracticeType").val("15760");
-                $("#ddlRecruiter").val();
-                var a=$("#ddlProjectType").val("4652");
-                console.log(a);
-                $.ajax({
-                    method: "GET", //HTTP POST Method
-                    url: "ProjectApi/Edit/"+Id, //Controller/View
-                    dataType: "json",
-                    success: function () { },
-                    error: function () { }
-                });
-            }
+        function GetData() {
+            $("#custName").val();
+            $("#projectName").val();
+            $("#Id").val();
+            $("#startDate").val();
+            $("#endDate").val();
+            $("#ddlProjectStatus").val("1800");
+            $("#ddlLocationGroup").val();
+            $("#ddlPayrollState").val();
+            $("#ddlSalesPerson").val();
+            $("#ddlProjectCatagory").val("19491");
+            $("#ddlSubDomain").val();
+            $("#ddlTimesSheetRep").val();
+            $("#ddlClientInvoiceGroup").val("10300");
+            $("#ddlTimesheetType").val("13120");
+            $("input[name='radioName']:checked").val();
+            $("#ddlPracticeType").val("15760");
+            $("#ddlRecruiter").val();
+            $("#ddlProjectType").val("4652");
+            $.ajax({
+                method: "GET", //HTTP POST Method
+                url: "ProjectApi/Edit/" + Id, //Controller/View
+                dataType: "json",
+                success: function () { },
+                error: function () { }
+            });
+        }
         function SaveData() {
             let project = {
                 Cust_Name: "",
@@ -197,7 +195,7 @@
                 method: "POST", //HTTP POST Method
                 url: "ProjectApi/Add", //Controller/View
                 dataType: "json",
-                data:project,
+                data: project,
                 success: function () { },
                 error: function () { }
             });
@@ -297,7 +295,7 @@
                     });
                     //ddlRecruiter
                 },
-                error: function () {}
+                error: function () { }
             })
         }
         function BindLocationList() {

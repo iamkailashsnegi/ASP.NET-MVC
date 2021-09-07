@@ -22,11 +22,6 @@ namespace MyProjectWebApp.Controllers
         public ActionResult Index()
         {
             return View();
-        }
-        public ActionResult Edit(int Id)
-        {
-            return View();
-        }
-       
+        }  
     }
 }
