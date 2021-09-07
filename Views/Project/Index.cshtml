@@ -21,10 +21,10 @@
     <div class="form-group col-md-3">
         <input type="button" value="Submit" id="btnSearch" />
     </div>
-<table id="prjList" class="table-bordered table-striped">
+<table id="prjList" class="table-bordered table-striped" data-order='[[3,"desc"]]'>
     <thead>
         <tr>
-            <th>Customer Name</th>
+            <th ordering="false">Customer Name</th>
             <th>Project Name</th>
             <th>Project Id</th>
             <th>Start Date</th>
@@ -90,11 +90,9 @@
             }
 
             $("#prjList").DataTable({
-
-                ordering: false,
-                paging: false,
+                //paging: false,
                 bFilter: false,
-                searching: false,
+                //searching: false,
                 dom: 't',
 
                 ajax: {

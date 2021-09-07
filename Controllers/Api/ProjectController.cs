@@ -21,16 +21,6 @@ namespace MyProjectWebApp.Controllers.Api
             var saveData = objRepo.AddProject(pm);
             return Ok(saveData);
         }
-
-        [HttpGet]
-        [Route("ProjectApi/Edit")]
-        public IHttpActionResult Edit(Project ep, int Id)
-        {
-            ProjectSaveData objRepo = new ProjectSaveData();
-            var editData = objRepo.Edit(Id);
-            return Ok(editData);
-        }
-
         [HttpGet]
         [Route("ProjectApi/GetProjectStatus")]
         public IHttpActionResult ProjectStatusList(int parentId)

@@ -57,10 +57,10 @@ namespace MyProjectWebApp.Repo
             }
         }
 
-        public string Edit(int Id)
+        public List<Project> Edit(int Id)
         {
-            //string a;
             Connection();
+            List<Project> SelectListNew = new List<Project>();
             DataSet ds = new DataSet();
             con.Open();
             SqlCommand cmd = new SqlCommand("EditUpdateProjectDetails_Training_Kailash", con);
@@ -94,7 +94,7 @@ namespace MyProjectWebApp.Repo
                     obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
                 }
             }
-            return "a";
+            return SelectListNew;
         }
         public string Update(Project Proj)
         {

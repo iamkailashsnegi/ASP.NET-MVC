@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MyProjectWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -22,6 +24,13 @@ namespace MyProjectWebApp.Controllers
         public ActionResult Index()
         {
             return View();
-        }  
+        }
+        public ActionResult Edit(int Id)
+        {
+            //Repo.ProjectSaveData sbd = new Repo.ProjectSaveData();
+            //return View(sbd.Edit(Id).Find(Project => Project.Id == Id));
+            return View();
+        }
+
     }
 }

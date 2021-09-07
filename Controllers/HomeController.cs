@@ -125,9 +125,5 @@ namespace MyProjectWebApp.Controllers
         {
             return View();
         }
-        public ActionResult Edit(int Id)
-        {
-            return View();
-        }
     }
 }
