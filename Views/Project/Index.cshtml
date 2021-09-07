@@ -52,20 +52,13 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            var table = $('#example').DataTable({
-                paging: false,
-                bFilter: false,
-                ordering: false,
-                searching: false,
-                dom: 't'         // This shows just the table
-            });
 
             BindProjectTypeList();
             BindPracTypeList();
             $("#btnSearch").on("click", function () {
-                if (IsValidate()) {
-                    SaveData();
-                }
+                //if (IsValidate()) {
+                //    SaveData();
+                //}
             });
             function BindPracTypeList() {
                 $.ajax({
@@ -97,17 +90,24 @@
             }
 
             $("#prjList").DataTable({
+
+                ordering: false,
+                paging: false,
+                bFilter: false,
+                searching: false,
+                dom: 't',
+
                 ajax: {
                     url: "/ProjectApi/GetProjectList",
                     dataSrc: ""
                 },
                 columns: [
                     {
-                        data: "Cust_Name"
+                        data: "Cust_Name",
                         /*"searchable": false*/
                     },
                     {
-                        data: "Project_Name"
+                        data: "Project_Name",
                         /*render: function (data) { return "" + data }*/
                     },
                     {

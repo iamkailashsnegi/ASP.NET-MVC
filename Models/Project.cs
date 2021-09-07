@@ -25,11 +25,11 @@ namespace MyProjectWebApp.Models
 
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
-        public DateTime SD { get; set; }
+        public string SD { get; set; }
 
         [Display(Name = "End Date")]
         [DataType(DataType.Date)]
-        public DateTime ED { get; set; }
+        public string ED { get; set; }
 
         [Required]
         [Display(Name = "Project Status")]

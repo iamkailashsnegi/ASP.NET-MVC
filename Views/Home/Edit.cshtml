@@ -15,10 +15,10 @@
             <label>Project Name</label>
             <input class="form-control" type="text" id="projectName" />
         </div>
-        @*<div class="form-group">
+        <div class="form-group">
                 <label>Project Id</label>
                 <input class="form-control" type="text" id="Id" />
-            </div>*@
+            </div>
         <div class="form-group">
             <label>Start Date</label>
             <input class="form-control" type="date" id="startDate" />
@@ -108,192 +108,59 @@
             BindRecuriterList(), BindLocationList(), BindSubDomainList(), BindTSRList(), BindSalesPersonList(), BindPayRollList()
         ).done(function () {
             GetEditList();
-            //$("#btnUpdate").on("click", function () {
-            //    if (IsValidate()) {
-            //        SaveData();
-            //    }
-            //});
+            $("#btnUpdate").on("click", function () {
+                    SaveData();
+            });
         });
-
-        //function IsValidate() {
-        //    let flag = true;
-        //    if (!custNameValidationJQ()) {
-        //        flag = false;
-        //    }
-        //    if (!projNameValidationJQ()) {
-        //        flag = false;
-        //    }
-        //    if (!projIdValidationJQ()) {
-        //        flag = false;
-        //    }
-        //    if (!dateValidationJQ())
-        //    {
-        //        flag = false;
-        //    }
-        //    if (!ddlProjStatCheckJQ())
-        //    {
-        //        flag = false;
-        //    }
-        //    //if (!radioButtonJQ())
-        //    //{
-        //    //    flag = false;
-        //    //}
-        //    return true;
-        //}
-        //function clearMessageJQ(ele) {
-        //    $(ele).siblings('span.error').remove();
-        //}
-
-        //function addErrorMessageJQ(ele, msg) {
-        //    const errorCtrl = $('<span />').addClass('error').html(msg);
-        //    $(ele).closest('div').append(errorCtrl);
-        //}
-
-        //function custNameValidationJQ() {
-        //    let flag = true;
-        //    const ele = $('#custName');
-        //    clearMessageJQ(ele)
-        //    const Name = $(ele).val();
-        //    // console.log(Name);
-        //    if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
-        //        addErrorMessageJQ(custName, 'Name is not valid');
-        //        flag = false;
-        //    } else {
-        //        flag = true;
-        //    }
-        //    return flag;
-        //}
-        //function projNameValidationJQ() {
-        //    let flag = true;
-        //    const ele = $('#projectName');
-        //    clearMessageJQ(ele)
-        //    const Name = $(ele).val();
-        //    // console.log(Name);
-        //    if (Name === "" || Name.length <= 2 || !isNaN(Name.split('')[0])) {
-        //        addErrorMessageJQ(projectName, 'Name is not valid');
-        //        flag = false;
-        //    } else {
-        //        flag = true;
-        //    }
-        //    return flag;
-        //}
-        //function projIdValidationJQ() {
-        //    let flag = true;
-        //    const ele = $('#Id');
-        //    clearMessageJQ(ele)
-        //    const Name = $(ele).val();
-        //    // console.log(Name);
-        //    if (Name === "" || Name.split('')[0] == 0 || Name.length!==7) {
-        //        addErrorMessageJQ(Id, 'Id is not valid');
-        //        flag = false;
-        //    } else {
-        //        flag = true;
-        //    }
-        //    return flag;
-        //}
-        //function dateValidationJQ() {
-        //    let flag = true;
-        //    const ele = $("#startDate");
-        //    clearMessageJQ(ele)
-        //    const selectedDate = new Date($(ele).val());
-        //    // console.log(selectedDate);
-        //    const minDate = new Date('01/01/2000');
-        //    const maxDate = new Date();
-        //    if (selectedDate <= minDate || selectedDate >= maxDate) {
-        //        addErrorMessageJQ(ele, 'Date is not valid');
-        //        flag = false;
-        //    }
-        //    return flag;
-        //}
-        //function ddlProjStatCheckJQ() {
-        //    let flag = true;
-        //    const ele = $('#ddlProjectStatus');
-        //    clearMessageJQ(ele)
-        //    const projStatName = $(ele).val();
-        //    if (projStatName === "") {
-        //        addErrorMessageJQ(ele);
-        //        flag = false;
-        //    } else {
-        //        flag = true;
-        //    }
-        //    return flag;
-        //}
-        ////function radioButtonJQ() {
-        ////    let flag = true;
-        ////    const ele = $('input[name]:checked');
-        ////    clearMessageJQ(ele)
-        ////    const radioBut = $(ele).val();
-        ////    if ($("input[name='Gender']:checked").length == 0) {
-        ////        addErrorMessageJQ(ele);
-        ////        flag = false;
-        ////    } else {
-        ////        flag = true;
-        ////    }
-        ////    return flag;
-        ////}
-        //function SaveData() {
-        //    let project = {
-        //        Cust_Name: "",
-        //        Project_Name: "",
-        //        Id: "",
-        //        SD: "",
-        //        ED: "",
-        //        Project_Status: "",
-        //        Location_Group: "",
-        //        PayRoll_State: "",
-        //        Sales_Person: "",
-        //        Proj_Cat: "",
-        //        Proj_Type: "",
-        //        Sub_Dom: "",
-        //        TSP: "",
-        //        CIG: "",
-        //        TimesheetType: "",
-        //        IVT: "",
-        //        Prac_Type: "",
-        //        Recruiter: ""
-        //    };
-        //    project.Cust_Name = $("#custName").val();
-        //    project.Project_Name = $("#projectName").val();
-        //    project.Id = $("#Id").val();
-        //    project.SD = $("#startDate").val();
-        //    project.ED = $("#endDate").val();
-        //    project.Project_Status = $("#ddlProjectStatus :selected").text();
-        //    project.Location_Group = $("#ddlLocationGroup").val();
-        //    project.PayRoll_State = $("#ddlPayrollState").val();
-        //    project.Sales_Person = $("#ddlSalesPerson").val();
-        //    project.Proj_Cat = $("#ddlProjectCatagory").val();
-        //    project.Proj_Type = $("#ddlProjectType").val();
-        //    project.Sub_Dom = $("#ddlSubDomain").val();
-        //    project.TSP = $("#ddlTimesSheetRep").val();
-        //    project.CIG = $("#ddlClientInvoiceGroup").val();
-        //    project.TimesheetType = $("#ddlTimesheetType").val();
-        //    project.IVT = $("input[name='radioName']:checked").val();
-        //    project.Prac_Type = $("#ddlPracticeType").val();
-        //    project.Recruiter = $("#ddlRecruiter").val();
-        //    console.log(project);
-        //    $.ajax({
-        //        method: "POST", //HTTP POST Method
-        //        url: "ProjectApi/Edit", //Controller/View
-        //        dataType: "json",
-        //        data: project,
-        //        success: function () { },
-        //        error: function () { }
-        //    });
-        //}
-        //function bindProjectStatusList(ctrl, parentId) {
-        //    $.ajax({
-        //        method: "GET",
-        //        url: "/ProjectApi/GetProjectStatus?parentId=1800",
-        //        success: function (data) {
-        //            console.log(data);
-        //            $(data).each(function () {
-        //                $("#ddlProjectStatus").append($("<option></option>").val(this.ID).html(this.Name));
-        //            });
-        //            //ddlProjectStatus
-        //        },
-        //        error: function () { }
-        //    })
-        //}
+        function SaveData() {
+            let project = {
+                Cust_Name: "",
+                Project_Name: "",
+                Id: "",
+                SD: "",
+                ED: "",
+                Project_Status: "",
+                Location_Group: "",
+                PayRoll_State: "",
+                Sales_Person: "",
+                Proj_Cat: "",
+                Proj_Type: "",
+                Sub_Dom: "",
+                TSP: "",
+                CIG: "",
+                TimesheetType: "",
+                IVT: "",
+                Prac_Type: "",
+                Recruiter: ""
+            };
+            project.Cust_Name = $("#custName").val();
+            project.Project_Name = $("#projectName").val();
+            project.Id = $("#Id").val();
+            project.SD = $("#startDate").val();
+            project.ED = $("#endDate").val();
+            project.Project_Status = $("#ddlProjectStatus :selected").text();
+            project.Location_Group = $("#ddlLocationGroup").val();
+            project.PayRoll_State = $("#ddlPayrollState").val();
+            project.Sales_Person = $("#ddlSalesPerson").val();
+            project.Proj_Cat = $("#ddlProjectCatagory").val();
+            project.Proj_Type = $("#ddlProjectType").val();
+            project.Sub_Dom = $("#ddlSubDomain").val();
+            project.TSP = $("#ddlTimesSheetRep").val();
+            project.CIG = $("#ddlClientInvoiceGroup").val();
+            project.TimesheetType = $("#ddlTimesheetType").val();
+            project.IVT = $("input[name='radioName']:checked").val();
+            project.Prac_Type = $("#ddlPracticeType").val();
+            project.Recruiter = $("#ddlRecruiter").val();
+            console.log(project);
+            $.ajax({
+                method: "POST", //HTTP POST Method
+                url: "", //Controller/View
+                dataType: "json",
+                data: project,
+                success: function () { },
+                error: function () { }
+            });
+        }
         function BindProjectStatusList() {
             $.ajax({
                 method: "GET",

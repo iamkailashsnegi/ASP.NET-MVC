@@ -52,7 +52,7 @@ namespace MyProjectWebApp.Repo
             }
             else
             {
-                return "Not Added";
+                return "Please Try Again";
 
             }
         }
@@ -77,8 +77,8 @@ namespace MyProjectWebApp.Repo
                     Project obj = new Project();
                     obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
                     obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
-                    obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
-                    obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
+                    obj.SD = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
+                    obj.ED = Convert.ToString(ds.Tables[0].Rows[i]["End_Date"]);
                     obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
                     obj.Location_Group = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Group"]);
                     obj.PayRoll_State = Convert.ToString(ds.Tables[0].Rows[i]["PayRoll"]);
@@ -132,45 +132,6 @@ namespace MyProjectWebApp.Repo
                 return "Not Update";
 
             }
-        }
-        public List<Project> GetEditList()
-        {
-            DataSet ds = new DataSet();
-            List<Project> SelectListNew = new List<Project>();
-            Connection();
-            con.Open();
-            SqlCommand cmd = new SqlCommand("EditUpdateProjectDetails_Training_Kailash", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@Proj_Id", Id);
-            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-            {
-                da.Fill(ds);
-            }
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
-                    Project obj = new Project();
-                    obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
-                    obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
-                    obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
-                    obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
-                    obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
-                    obj.Location_Group = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Group"]);
-                    obj.PayRoll_State = Convert.ToString(ds.Tables[0].Rows[i]["PayRoll"]);
-                    obj.Sales_Person = Convert.ToString(ds.Tables[0].Rows[i]["SalesPerson"]);
-                    obj.Proj_Cat = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Cat"]);
-                    obj.Proj_Type = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Type"]);
-                    obj.Sub_Dom = Convert.ToString(ds.Tables[0].Rows[i]["Sub_Domain"]);
-                    obj.TSP = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetRep"]);
-                    obj.CIG = Convert.ToString(ds.Tables[0].Rows[i]["CLientInvoice"]);
-                    obj.TimesheetType = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetType"]);
-                    obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
-                    obj.Prac_Type = Convert.ToString(ds.Tables[0].Rows[i]["Prac_Type"]);
-                    obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
-                }
-            }
-            return SelectListNew;
         }
     }
 }

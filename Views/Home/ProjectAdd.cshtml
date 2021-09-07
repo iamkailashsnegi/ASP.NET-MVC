@@ -102,8 +102,6 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            //const projectStatus = 1800;
-            //bindProjectStatusList(ddlProjectStatus, projectStatus);
             BindProjectStatusList();
             BindProjectCatagoryList();
             BindTimeSheetList();
@@ -117,50 +115,14 @@
             BindSalesPersonList();
             BindPayRollList();
             $("#btnSave").on("click",
-                //function ()
-                (event) => {
-                event.preventDefault();
+                function (){
                 if (IsValidate()) {
                     SaveData();
                 }
             });
         });
 
-        //$(document).on('input', 'input[type=text]', (event) => {
-        //    const $ctrl = event.target;
-        //    const ctrlId = $($ctrl).attr('id');
-        //    if (ctrlId === 'txtFName') {
-        //        fNameValidationJQ();
-        //    }
-        //    if (ctrlId === 'txtZip') {
-        //        zipCodeValidationJQ();
-        //    }
-        //    if (ctrlId === 'txtMobile') {
-        //        mobileValidationJQ();
-        //    }
-        //    if (ctrlId === 'txtEmail') {
-        //        emailValidationJQ();
-        //    }
-        //    if (ctrlId === 'txtJobTitle') {
-        //        jobTitleJQ();
-        //    }
-        //});
-        //$(document).on('change', (event) => {
-        //    const $ctrl = event.target;
-        //    const ctrlId = $($ctrl).attr('id');
-        //    if (ctrlId === 'countryColle') {
-        //        countryCheckJQ();
-        //    }
-        //    if (ctrlId === 'stateColle') {
-        //        stateCheckJQ();
-        //    }
-        //    if (ctrlId === 'cityColle') {
-        //        cityCheckJQ();
-        //    }
-        //    if (ctrlId === 'txtJobStartDate') {
-        //        dateValidationJQ();
-        //    }
-        //});
+        
 
         function IsValidate() {
             let flag = true;
@@ -181,10 +143,6 @@
             {
                 flag = false;
             }
-            //if (!radioButtonJQ())
-            //{
-            //    flag = false;
-            //}
             return true;
         }
         function clearMessageJQ(ele) {
@@ -265,19 +223,6 @@
             }
             return flag;
         }
-        //function radioButtonJQ() {
-        //    let flag = true;
-        //    const ele = $('input[name]:checked');
-        //    clearMessageJQ(ele)
-        //    const radioBut = $(ele).val();
-        //    if ($("input[name='Gender']:checked").length == 0) {
-        //        addErrorMessageJQ(ele);
-        //        flag = false;
-        //    } else {
-        //        flag = true;
-        //    }
-        //    return flag;
-        //}
         function SaveData() {
             let project = {
                 Cust_Name: "",
@@ -327,20 +272,6 @@
                 error: function () { }
             });
         }
-        //function bindProjectStatusList(ctrl, parentId) {
-        //    $.ajax({
-        //        method: "GET",
-        //        url: "/ProjectApi/GetProjectStatus?parentId=1800",
-        //        success: function (data) {
-        //            console.log(data);
-        //            $(data).each(function () {
-        //                $("#ddlProjectStatus").append($("<option></option>").val(this.ID).html(this.Name));
-        //            });
-        //            //ddlProjectStatus
-        //        },
-        //        error: function () { }
-        //    })
-        //}
         function BindProjectStatusList() {
             $.ajax({
                 method: "GET",

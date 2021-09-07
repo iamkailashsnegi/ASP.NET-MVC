@@ -357,8 +357,8 @@ namespace MyProjectWebApp.Repo
                     obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
                     obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
                     obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
-                    obj.SD = Convert.ToDateTime(ds.Tables[0].Rows[i]["Start_Date"]);
-                    obj.ED = Convert.ToDateTime(ds.Tables[0].Rows[i]["End_Date"]);
+                    obj.SD = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
+                    obj.ED = Convert.ToString(ds.Tables[0].Rows[i]["End_Date"]);
                     obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
                     obj.Location_Group = Convert.ToString(ds.Tables[0].Rows[i]["Loc_Group"]);
                     obj.PayRoll_State = Convert.ToString(ds.Tables[0].Rows[i]["PayRoll"]);
