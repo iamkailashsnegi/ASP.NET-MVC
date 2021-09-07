@@ -22,7 +22,7 @@ namespace MyProjectWebApp.Controllers.Api
             return Ok(saveData);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("ProjectApi/Edit")]
         public IHttpActionResult Edit(Project ep, int Id)
         {

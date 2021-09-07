@@ -18,5 +18,13 @@ namespace MyProjectWebApp.Controllers.Api
             var p = objRepo.GetProjectsList();
             return Ok(p);
         }
+        [HttpGet]
+        [Route("ProjectApi/Edit")]
+        public IHttpActionResult Edit(int Id)
+        {
+            ProjectSaveData objRepo = new ProjectSaveData();
+            var editData = objRepo.Edit(Id);
+            return Ok(editData);
+        }
     }
 }

@@ -115,7 +115,8 @@
             BindSalesPersonList();
             BindPayRollList();
             $("#btnSave").on("click",
-                function (){
+                function (e) {
+                    e.preventDefault();
                 if (IsValidate()) {
                     SaveData();
                 }

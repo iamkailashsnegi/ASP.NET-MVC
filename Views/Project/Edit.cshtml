@@ -118,7 +118,7 @@
                 BindSalesPersonList(),
                 BindPayRollList()
             ).done(function () {
-                GetData()
+                GetData();
             })
             $("#btnUpdate").on("click", function () {
                     SaveData();
@@ -143,14 +143,15 @@
                 $("input[name='radioName']:checked").val();
                 $("#ddlPracticeType").val("15760");
                 $("#ddlRecruiter").val();
-                $("#ddlProjectType").val("4652");
-                //$.ajax({
-                //    method: "POST", //HTTP POST Method
-                //    url: "ProjectApi/Edit", //Controller/View
-                //    dataType: "json",
-                //    success: function () { },
-                //    error: function () { }
-                //});
+                var a=$("#ddlProjectType").val("4652");
+                console.log(a);
+                $.ajax({
+                    method: "GET", //HTTP POST Method
+                    url: "ProjectApi/Edit/"+Id, //Controller/View
+                    dataType: "json",
+                    success: function () { },
+                    error: function () { }
+                });
             }
         function SaveData() {
             let project = {
