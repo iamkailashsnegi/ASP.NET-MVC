@@ -16,9 +16,9 @@
             <input class="form-control" type="text" id="projectName" />
         </div>
         <div class="form-group">
-                <label>Project Id</label>
-                <input class="form-control" type="text" id="Id" />
-            </div>
+            <label>Project Id</label>
+            <input class="form-control" type="text" id="Id" />
+        </div>
         <div class="form-group">
             <label>Start Date</label>
             <input class="form-control" type="date" id="startDate" />
@@ -103,15 +103,55 @@
 </form>
 @section scripts{
     <script>
-        $.when(
-            BindProjectStatusList(), BindProjectCatagoryList(), BindTimeSheetList(), BindProjectTypeList(), BindPracTypeList(), BindCIGList(),
-            BindRecuriterList(), BindLocationList(), BindSubDomainList(), BindTSRList(), BindSalesPersonList(), BindPayRollList()
-        ).done(function () {
-            GetEditList();
+        $(document).ready(function () {
+            $.when(
+                BindProjectStatusList(),
+                BindProjectCatagoryList(),
+                BindTimeSheetList(),
+                BindProjectTypeList(),
+                BindPracTypeList(),
+                BindCIGList(),
+                BindRecuriterList(),
+                BindLocationList(),
+                BindSubDomainList(),
+                BindTSRList(),
+                BindSalesPersonList(),
+                BindPayRollList()
+            ).done(function () {
+                GetData()
+            })
             $("#btnUpdate").on("click", function () {
                     SaveData();
             });
         });
+            function GetData()
+            {
+                $("#custName").val();
+                $("#projectName").val();
+                $("#Id").val();
+                $("#startDate").val();
+                $("#endDate").val();
+                $("#ddlProjectStatus").val("1800");
+                $("#ddlLocationGroup").val();
+                $("#ddlPayrollState").val();
+                $("#ddlSalesPerson").val();
+                $("#ddlProjectCatagory").val("19491");
+                $("#ddlSubDomain").val();
+                $("#ddlTimesSheetRep").val();
+                $("#ddlClientInvoiceGroup").val("10300");
+                $("#ddlTimesheetType").val("13120");
+                $("input[name='radioName']:checked").val();
+                $("#ddlPracticeType").val("15760");
+                $("#ddlRecruiter").val();
+                $("#ddlProjectType").val("4652");
+                //$.ajax({
+                //    method: "POST", //HTTP POST Method
+                //    url: "ProjectApi/Edit", //Controller/View
+                //    dataType: "json",
+                //    success: function () { },
+                //    error: function () { }
+                //});
+            }
         function SaveData() {
             let project = {
                 Cust_Name: "",
@@ -133,12 +173,12 @@
                 Prac_Type: "",
                 Recruiter: ""
             };
-            project.Cust_Name = $("#custName").val();
+            project.Cust_Name = $("#custName").val("");
             project.Project_Name = $("#projectName").val();
             project.Id = $("#Id").val();
             project.SD = $("#startDate").val();
             project.ED = $("#endDate").val();
-            project.Project_Status = $("#ddlProjectStatus :selected").text();
+            project.Project_Status = $("#ddlProjectStatus").val();
             project.Location_Group = $("#ddlLocationGroup").val();
             project.PayRoll_State = $("#ddlPayrollState").val();
             project.Sales_Person = $("#ddlSalesPerson").val();
@@ -151,12 +191,12 @@
             project.IVT = $("input[name='radioName']:checked").val();
             project.Prac_Type = $("#ddlPracticeType").val();
             project.Recruiter = $("#ddlRecruiter").val();
-            console.log(project);
+            //console.log(project);
             $.ajax({
                 method: "POST", //HTTP POST Method
-                url: "", //Controller/View
+                url: "ProjectApi/Add", //Controller/View
                 dataType: "json",
-                data: project,
+                data:project,
                 success: function () { },
                 error: function () { }
             });

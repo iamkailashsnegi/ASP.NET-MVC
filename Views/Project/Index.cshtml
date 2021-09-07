@@ -161,7 +161,7 @@
                     {
                         //edit button creation
                         render: function (data, type, row) {
-                            return createButton('edit', row.Id);
+                            return '<a href="Edit"' + row.Id + '">EDIT</a>';
                         }
                     }
                 ]
@@ -170,7 +170,7 @@
         });
         function createButton(buttonType, rowID) {
             var buttonText = buttonType == "edit" ? "Edit" : "Delete";
-            return '<button class="' + buttonType + '" type="button" onclick="http://localhost:60628/Home/Edit?12345">' + buttonText + '</button>';
+            return '<button class="' + buttonType + '" type="button">' + buttonText + '</button>';
         }
     </script>
 }
