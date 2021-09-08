@@ -381,26 +381,8 @@
             return flag;
         }
         function SaveData() {
-            let project = {
-                Cust_Name: "",
-                Project_Name: "",
-                Id: "",
-                SD: "",
-                ED: "",
-                Project_Status:"",
-                Location_Group: "",
-                PayRoll_State: "",
-                Sales_Person: "",
-                Proj_Cat: "",
-                Proj_Type: "",
-                Sub_Dom: "",
-                TSP: "",
-                CIG: "",
-                TimesheetType: "",
-                IVT: "",
-                Prac_Type: "",
-                Recruiter: ""
-            };
+            //debugger;
+            let project = {};
             project.Cust_Name = $("#custName").val();
             project.Project_Name = $("#projectName").val();
             project.Id = $("#Id").val();
@@ -437,7 +419,8 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlProjectStatus").append($("<option></option>").val(this.ID).html(this.Name));
+                        //debugger;
+                        $("#ddlProjectStatus").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlProjectStatus
                 },
@@ -451,7 +434,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlProjectCatagory").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlProjectCatagory").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlProjectCatagory
                 },
@@ -465,7 +448,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlTimesheetType").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlTimesheetType").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlTimeSheetType
                 },
@@ -479,7 +462,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlClientInvoiceGroup").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlClientInvoiceGroup").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlClientInvoiceGroup
                 },
@@ -493,7 +476,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlPracticeType").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlPracticeType").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlPracticeType
                 },
@@ -507,7 +490,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlProjectType").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlProjectType").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlProjectType
                 },
@@ -521,7 +504,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlRecruiter").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlRecruiter").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlRecruiter
                 },
@@ -535,7 +518,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlLocationGroup").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlLocationGroup").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlLocationGroup
                 },
@@ -549,7 +532,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlSubDomain").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlSubDomain").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlSubDomain
                 },
@@ -563,7 +546,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlTimesSheetRep").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlTimesSheetRep").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlTimeSheetRep
                 },
@@ -577,7 +560,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlSalesPerson").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlSalesPerson").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlSalesPerson
                 },
@@ -591,7 +574,7 @@
                 success: function (data) {
                     //console.log(data);
                     $(data).each(function () {
-                        $("#ddlPayrollState").append($("<option></option>").val(this.ID).html(this.Name));
+                        $("#ddlPayrollState").append($("<option></option>").val(this.Id).html(this.Name));
                     });
                     //ddlPayrollState
                 },
