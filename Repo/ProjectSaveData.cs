@@ -98,7 +98,7 @@ namespace MyProjectWebApp.Repo
             }
             return SelectListNew;
         }
-        public string Update(Project Proj)
+        public bool Update(Project Proj)
         {
             Connection();
             SqlCommand cmd = new SqlCommand("EditProjectDetails_Training_Kailash", con);
@@ -126,12 +126,12 @@ namespace MyProjectWebApp.Repo
             con.Close();
             if (i >= 1)
             {
-                return "Update Successfully";
+                return true;
 
             }
             else
             {
-                return "Not Update";
+                return false;
 
             }
         }

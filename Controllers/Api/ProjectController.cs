@@ -33,11 +33,11 @@ namespace MyProjectWebApp.Controllers.Api
 
         [HttpPost]
         [Route("ProjectApi/AddUpdate")]
-        public IHttpActionResult Update(Project pm)
+        public IHttpActionResult Update(Project p)
         {
             ProjectSaveData objRepo = new ProjectSaveData();
-            var saveData = objRepo.Update(pm);
-            return Ok(saveData);
+            var saveDa = objRepo.Update(p);
+            return Ok(saveDa);
         }
 
         [HttpGet]

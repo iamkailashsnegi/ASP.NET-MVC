@@ -129,10 +129,7 @@
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
-                    alert("Form Submitted")
-                    function reset_form(event) {
-                        $("#myForm").reset();
-                    }
+                    alert("Form Submitted");
                 }
             });
         });
@@ -389,7 +386,6 @@
             project.SD = $("#startDate").val();
             project.ED = $("#endDate").val();
             project.Project_Status = $("#ddlProjectStatus").val();
-            console.log(project.Project_Status);
             project.Location_Group = $("#ddlLocationGroup").val();
             project.PayRoll_State = $("#ddlPayrollState").val();
             project.Sales_Person = $("#ddlSalesPerson").val();
@@ -402,7 +398,7 @@
             project.IVT = $("input[name='radioName']:checked").val();
             project.Prac_Type = $("#ddlPracticeType").val();
             project.Recruiter = $("#ddlRecruiter").val();
-            console.log(project);
+            //console.log(project);
             $.ajax({
                 method: "POST", //HTTP POST Method
                 url: "/ProjectApi/Add", //Controller/View

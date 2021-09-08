@@ -135,10 +135,7 @@
             $("#btnUpdate").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
-                    alert("Form Submitted")
-                    function reset_form(event) {
-                        $("#myForm").reset();
-                    }
+                    alert("Form Updated");
                 }
             });
         });
@@ -164,7 +161,6 @@
                     $("#ddlTimesSheetRep").val(data[0].TSP);
                     $("#ddlClientInvoiceGroup").val(data[0].CIG);
                     $("#ddlTimesheetType").val(data[0].TimesheetType);
-                    //debugger;
                     $("input[name='radioName']:checked").val(data[0].IVT);
                     $("#ddlPracticeType").val(data[0].Prac_Type);
                     $("#ddlRecruiter").val(data[0].Recruiter);
@@ -417,7 +413,7 @@
             return flag;
         }
         function SaveData() {
-            //debugger;
+            debugger;
             let project = {};
             project.Cust_Name = $("#custName").val();
             project.Project_Name = $("#projectName").val();
@@ -425,7 +421,6 @@
             project.SD = $("#startDate").val();
             project.ED = $("#endDate").val();
             project.Project_Status = $("#ddlProjectStatus").val();
-            console.log(project.Project_Status);
             project.Location_Group = $("#ddlLocationGroup").val();
             project.PayRoll_State = $("#ddlPayrollState").val();
             project.Sales_Person = $("#ddlSalesPerson").val();
@@ -438,13 +433,13 @@
             project.IVT = $("input[name='radioName']:checked").val();
             project.Prac_Type = $("#ddlPracticeType").val();
             project.Recruiter = $("#ddlRecruiter").val();
-            console.log(project);
+            //console.log(project);
             $.ajax({
                 method: "POST", //HTTP POST Method
                 url: "/ProjectApi/AddUpdate", //Controller/View
                 dataType: "json",
                 data: project,
-                success: function () { },
+                success: function () {},
                 error: function () { }
             });
         }
