@@ -77,6 +77,7 @@ namespace MyProjectWebApp.Repo
                     Project obj = new Project();
                     obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
                     obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
+                    //obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
                     obj.SD = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
                     obj.ED = Convert.ToString(ds.Tables[0].Rows[i]["End_Date"]);
                     obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);
@@ -103,7 +104,7 @@ namespace MyProjectWebApp.Repo
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Cust_Name", Proj.Cust_Name);
             cmd.Parameters.AddWithValue("@Proj_Name", Proj.Project_Name);
-            //cmd.Parameters.AddWithValue("@Proj_Id", Proj.Id);
+            cmd.Parameters.AddWithValue("@Proj_Id", Proj.Id);
             cmd.Parameters.AddWithValue("@Start_Date", Proj.SD);
             cmd.Parameters.AddWithValue("@End_Date", Proj.ED);
             cmd.Parameters.AddWithValue("@Proj_Status", Proj.Project_Status);

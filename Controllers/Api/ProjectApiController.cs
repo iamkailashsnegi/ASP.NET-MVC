@@ -26,5 +26,6 @@ namespace MyProjectWebApp.Controllers.Api
             var editData = objRepo.Edit(Id);
             return Ok(editData);
         }
+
     }
 }

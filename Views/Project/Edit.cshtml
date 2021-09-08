@@ -153,55 +153,55 @@
                 error: function () { }
             });
         }
-        //function SaveData() {
-        //    let project = {
-        //        Cust_Name: "",
-        //        Project_Name: "",
-        //        Id: "",
-        //        SD: "",
-        //        ED: "",
-        //        Project_Status: "",
-        //        Location_Group: "",
-        //        PayRoll_State: "",
-        //        Sales_Person: "",
-        //        Proj_Cat: "",
-        //        Proj_Type: "",
-        //        Sub_Dom: "",
-        //        TSP: "",
-        //        CIG: "",
-        //        TimesheetType: "",
-        //        IVT: "",
-        //        Prac_Type: "",
-        //        Recruiter: ""
-        //    };
-        //    project.Cust_Name = $("#custName").val("");
-        //    project.Project_Name = $("#projectName").val();
-        //    project.Id = $("#Id").val();
-        //    project.SD = $("#startDate").val();
-        //    project.ED = $("#endDate").val();
-        //    project.Project_Status = $("#ddlProjectStatus").val();
-        //    project.Location_Group = $("#ddlLocationGroup").val();
-        //    project.PayRoll_State = $("#ddlPayrollState").val();
-        //    project.Sales_Person = $("#ddlSalesPerson").val();
-        //    project.Proj_Cat = $("#ddlProjectCatagory").val();
-        //    project.Proj_Type = $("#ddlProjectType").val();
-        //    project.Sub_Dom = $("#ddlSubDomain").val();
-        //    project.TSP = $("#ddlTimesSheetRep").val();
-        //    project.CIG = $("#ddlClientInvoiceGroup").val();
-        //    project.TimesheetType = $("#ddlTimesheetType").val();
-        //    project.IVT = $("input[name='radioName']:checked").val();
-        //    project.Prac_Type = $("#ddlPracticeType").val();
-        //    project.Recruiter = $("#ddlRecruiter").val();
-        //    //console.log(project);
-        //    $.ajax({
-        //        method: "POST", //HTTP POST Method
-        //        url: "ProjectApi/Add", //Controller/View
-        //        dataType: "json",
-        //        data: project,
-        //        success: function () { },
-        //        error: function () { }
-        //    });
-        //}
+        function SaveData() {
+            let project = {
+                Cust_Name: "",
+                Project_Name: "",
+                Id: "",
+                SD: "",
+                ED: "",
+                Project_Status: "",
+                Location_Group: "",
+                PayRoll_State: "",
+                Sales_Person: "",
+                Proj_Cat: "",
+                Proj_Type: "",
+                Sub_Dom: "",
+                TSP: "",
+                CIG: "",
+                TimesheetType: "",
+                IVT: "",
+                Prac_Type: "",
+                Recruiter: ""
+            };
+            project.Cust_Name = $("#custName").val("");
+            project.Project_Name = $("#projectName").val();
+            project.Id = $("#Id").val();
+            project.SD = $("#startDate").val();
+            project.ED = $("#endDate").val();
+            project.Project_Status = $("#ddlProjectStatus").val();
+            project.Location_Group = $("#ddlLocationGroup").val();
+            project.PayRoll_State = $("#ddlPayrollState").val();
+            project.Sales_Person = $("#ddlSalesPerson").val();
+            project.Proj_Cat = $("#ddlProjectCatagory").val();
+            project.Proj_Type = $("#ddlProjectType").val();
+            project.Sub_Dom = $("#ddlSubDomain").val();
+            project.TSP = $("#ddlTimesSheetRep").val();
+            project.CIG = $("#ddlClientInvoiceGroup").val();
+            project.TimesheetType = $("#ddlTimesheetType").val();
+            project.IVT = $("input[name='radioName']:checked").val();
+            project.Prac_Type = $("#ddlPracticeType").val();
+            project.Recruiter = $("#ddlRecruiter").val();
+            //console.log(project);
+            $.ajax({
+                method: "POST", //HTTP POST Method
+                url: "ProjectApi/Add", //Controller/View
+                dataType: "json",
+                data: project,
+                success: function () { },
+                error: function () { }
+            });
+        }
         function BindProjectStatusList() {
             $.ajax({
                 method: "GET",

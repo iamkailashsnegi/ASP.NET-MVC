@@ -12,14 +12,6 @@ namespace MyProjectWebApp.Controllers
 {
     public class ProjectController : Controller
     {
-        private SqlConnection con;
-
-        private void Connection()
-        {
-            string _conString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
-            con = new SqlConnection(_conString);
-
-        }
         // GET: Project
         public ActionResult Index()
         {
@@ -27,8 +19,6 @@ namespace MyProjectWebApp.Controllers
         }
         public ActionResult Edit(int Id)
         {
-            //Repo.ProjectSaveData sbd = new Repo.ProjectSaveData();
-            //return View(sbd.Edit(Id).Find(Project => Project.Id == Id));
             return View();
         }
 
