@@ -22,6 +22,7 @@ namespace MyProjectWebApp.Repo
         public string AddProject(Project Proj)
         {
             Connection();
+            con.Open();
             SqlCommand cmd = new SqlCommand("Project_Kailash_Training", con);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@Cust_Name", Proj.Cust_Name);
@@ -42,7 +43,6 @@ namespace MyProjectWebApp.Repo
             cmd.Parameters.AddWithValue("@IsVMS", Proj.IVT);
             cmd.Parameters.AddWithValue("@Prac_Type", Proj.Prac_Type);
             cmd.Parameters.AddWithValue("@Recruiter", Proj.Recruiter);
-            con.Open();
             int i = cmd.ExecuteNonQuery();
             con.Close();
             if (i >= 1)
@@ -59,9 +59,9 @@ namespace MyProjectWebApp.Repo
 
         public List<Project> Edit(int Id)
         {
-            Connection();
             List<Project> SelectListNew = new List<Project>();
             DataSet ds = new DataSet();
+            Connection();
             con.Open();
             SqlCommand cmd = new SqlCommand("EditUpdateProjectDetails_Training_Kailash", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -93,6 +93,7 @@ namespace MyProjectWebApp.Repo
                     obj.IVT = Convert.ToString(ds.Tables[0].Rows[i]["IsVMS"]);
                     obj.Prac_Type = Convert.ToString(ds.Tables[0].Rows[i]["Prac_Type"]);
                     obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
+                    SelectListNew.Add(obj);
                 }
             }
             return SelectListNew;

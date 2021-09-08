@@ -127,13 +127,12 @@
         function GetData() {
             $.ajax({
                 method: "GET", //HTTP POST Method
-                url: "/ProjectApi/Edit", //Controller/View
+                url: "/ProjectApi/EditDetails?Id=54321", //Controller/View
                 success: function (data) {
-                    data = JSON.parse(data.Project);
-                    //console.log(data);
+                    console.log(data);
                     $("#custName").val(data[0].Cust_Name);
                     $("#projectName").val(data[0].Project_Name);
-                    $("#Id").val(data[0].ID);
+                    $("#Id").val(data[0].Id);
                     $("#startDate").val(data[0].SD);
                     $("#endDate").val(data[0].ED);
                     $("#ddlProjectStatus").val(data[0].Project_Status);
@@ -141,6 +140,7 @@
                     $("#ddlPayrollState").val(data[0].PayRoll_State);
                     $("#ddlSalesPerson").val(data[0].Sales_Person);
                     $("#ddlProjectCatagory").val(data[0].Proj_Cat);
+                    $("#ddlProjectType").val(data[0].Proj_Type);
                     $("#ddlSubDomain").val(data[0].Sub_Dom);
                     $("#ddlTimesSheetRep").val(data[0].TSP);
                     $("#ddlClientInvoiceGroup").val(data[0].CLG);
@@ -148,7 +148,6 @@
                     $("input[name='radioName']:checked").val(data[0].IVT);
                     $("#ddlPracticeType").val(data[0].Prac_Type);
                     $("#ddlRecruiter").val(data[0].Recruiter);
-                    $("#ddlProjectType").val(data[0].Proj_Type);
                 },
                 error: function () { }
             });
@@ -192,10 +191,10 @@
             project.IVT = $("input[name='radioName']:checked").val();
             project.Prac_Type = $("#ddlPracticeType").val();
             project.Recruiter = $("#ddlRecruiter").val();
-            //console.log(project);
+            console.log(project);
             $.ajax({
                 method: "POST", //HTTP POST Method
-                url: "ProjectApi/Add", //Controller/View
+                url: "/ProjectApi/AddUpdate", //Controller/View
                 dataType: "json",
                 data: project,
                 success: function () { },

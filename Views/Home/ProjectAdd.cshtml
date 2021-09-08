@@ -3,7 +3,7 @@
     ViewBag.Title = "ProjectAdd";
 }
 <p><h2>Manage Projects</h2><hr /></p>
-<form>
+<form id="myForm">
     <div class="col-md-4">
         <div class="form-group">
             <label>Customer Name</label>
@@ -28,6 +28,7 @@
         <div class="form-group">
             <label>Project Status</label>
             <select class="form-control" id="ddlProjectStatus">
+                <option>Select</option>
             </select>
         </div>
     </div>
@@ -35,31 +36,37 @@
         <div class="form-group">
             <label>Location/Group</label>
             <select class="form-control" id="ddlLocationGroup">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>PayRoll State</label>
             <select class="form-control" id="ddlPayrollState">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>Sales Person</label>
             <select class="form-control" id="ddlSalesPerson">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>Project Catagory</label>
             <select class="form-control" id="ddlProjectCatagory">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>Project Type</label>
             <select class="form-control" id="ddlProjectType">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>Sub-Domain</label>
             <select class="form-control" id="ddlSubDomain">
+                <option>Select</option>
             </select>
         </div>
     </div>
@@ -67,16 +74,19 @@
         <div class="form-group">
             <label>Times Sheet Representative</label>
             <select class="form-control" id="ddlTimesSheetRep">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>Client-Invoice Group</label>
             <select class="form-control" id="ddlClientInvoiceGroup">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>Timesheet Type</label>
             <select class="form-control" id="ddlTimesheetType">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
@@ -89,11 +99,13 @@
         <div class="form-group">
             <label>Practice Type</label>
             <select class="form-control" id="ddlPracticeType">
+                <option>Select</option>
             </select>
         </div>
         <div class="form-group">
             <label>Recruiter</label>
             <select class="form-control" id="ddlRecruiter">
+                <option>Select</option>
             </select>
         </div>
     </div>
@@ -114,17 +126,16 @@
             BindTSRList();
             BindSalesPersonList();
             BindPayRollList();
-            $("#btnSave").on("click",
-                function (e) {
-                    e.preventDefault();
+            $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
+                    alert("Form Submitted")
+                    function reset_form(event) {
+                        $("#myForm").reset();
+                    }
                 }
             });
         });
-
-        
-
         function IsValidate() {
             let flag = true;
             if (!custNameValidationJQ()) {
@@ -136,25 +147,54 @@
             if (!projIdValidationJQ()) {
                 flag = false;
             }
-            if (!dateValidationJQ())
-            {
+            if (!StartDateValidation()) {
                 flag = false;
             }
-            if (!ddlProjStatCheckJQ())
-            {
+            if (!LocationGpValidation()) {
                 flag = false;
             }
-            return true;
+            if (!StateNameValidation()) {
+                flag = false;
+            }
+            if (!SalesPersonValidation()) {
+                flag = false;
+            }
+            if (!ProjectCategoryValidation()) {
+                flag = false;
+            }
+            if (!SubDomainValidation()) {
+                flag = false;
+            }
+            if (!TSRepresentativenValidation()) {
+                flag = false;
+            }
+            if (!TSTypeValidation()) {
+                flag = false;
+            }
+            if (!PracticeTypeValidation()) {
+                flag = false;
+            }
+            if (!RecruiterValidation()) {
+                flag = false;
+            }
+            if (!InvoiceGpValidation()) {
+                flag = false;
+            }
+            if (!IsVmsTSValidation()) {
+                flag = false;
+            }
+            if (!PSValidation()) {
+                flag = false;
+            }
+            return flag;
         }
         function clearMessageJQ(ele) {
             $(ele).siblings('span.error').remove();
         }
-
         function addErrorMessageJQ(ele, msg) {
             const errorCtrl = $('<span />').addClass('error').html(msg);
             $(ele).closest('div').append(errorCtrl);
         }
-
         function custNameValidationJQ() {
             let flag = true;
             const ele = $('#custName');
@@ -189,7 +229,7 @@
             clearMessageJQ(ele)
             const Name = $(ele).val();
             // console.log(Name);
-            if (Name === "" || Name.split('')[0] == 0 || Name.length!==7) {
+            if (Name === "" || Name.split('')[0] == 0 || Name.length!==5) {
                 addErrorMessageJQ(Id, 'Id is not valid');
                 flag = false;
             } else {
@@ -197,31 +237,147 @@
             }
             return flag;
         }
-        function dateValidationJQ() {
+        function StartDateValidation() {
             let flag = true;
-            const ele = $("#startDate");
+            const ele = $('#startDate');
             clearMessageJQ(ele)
-            const selectedDate = new Date($(ele).val());
-            // console.log(selectedDate);
-            const minDate = new Date('01/01/2000');
-            const maxDate = new Date();
-            if (selectedDate <= minDate || selectedDate >= maxDate) {
-                addErrorMessageJQ(ele, 'Date is not valid');
+            const stDate = $('#startDate').val();
+            if (stDate == "") {
+                addErrorMessageJQ(ele, 'Please fill the Project Start Date');
                 flag = false;
-            }
+            } else { flag = true; }
             return flag;
         }
-        function ddlProjStatCheckJQ() {
+        function LocationGpValidation() {
+            let flag = true;
+            const ele = $('#ddlLocationGroup');
+            clearMessageJQ(ele)
+            const locGp = $('#ddlLocationGroup').val();
+            if (locGp == "Select") {
+                addErrorMessageJQ(ele, 'Please Select Location Group');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function StateNameValidation() {
+            let flag = true;
+            const ele = $('#ddlPayrollState');
+            clearMessageJQ(ele)
+            const stateName = $('#ddlPayrollState').val();
+            if (stateName == "Select") {
+                addErrorMessageJQ(ele, 'Please Select Payroll State');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function SalesPersonValidation() {
+            let flag = true;
+            const ele = $('#ddlSalesPerson');
+            clearMessageJQ(ele)
+            const salesPName = $('#ddlSalesPerson').val();
+            if (salesPName == "Select") {
+                addErrorMessageJQ(ele, 'Please Select SalesPerson Name');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function ProjectCategoryValidation() {
+            let flag = true;
+            const ele = $('#ddlProjectCatagory');
+            clearMessageJQ(ele)
+            const projectCat = $('#ddlProjectCatagory').val();
+            if (projectCat == "Select") {
+                addErrorMessageJQ(ele, 'Please Select Project Category');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function SubDomainValidation() {
+            let flag = true;
+            const ele = $('#ddlSubDomain');
+            clearMessageJQ(ele)
+            const subDomain = $('#ddlSubDomain').val();
+            if (subDomain == "Select") {
+                addErrorMessageJQ(ele, 'Please Select SubDomain');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function TSRepresentativenValidation() {
+            let flag = true;
+            const ele = $('#ddlTimesSheetRep');
+            clearMessageJQ(ele)
+            const tsrp = $('#ddlTimesSheetRep').val();
+            if (tsrp == "Select") {
+                addErrorMessageJQ(ele, 'Please Select TimeSheet Representative');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function TSTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlTimesheetType');
+            clearMessageJQ(ele)
+            const tsType = $('#ddlTimesheetType').val();
+            if (tsType == "Select") {
+                addErrorMessageJQ(ele, 'Please Select TimeSheet Type');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function PracticeTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlPracticeType');
+            clearMessageJQ(ele)
+            const pracType = $('#ddlPracticeType').val();
+            if (pracType == "Select") {
+                addErrorMessageJQ(ele, 'Please Select Practice Type');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function RecruiterValidation() {
+            let flag = true;
+            const ele = $('#ddlRecruiter');
+            clearMessageJQ(ele)
+            const recruiter = $('#ddlRecruiter').val();
+            if (recruiter == "Select") {
+                addErrorMessageJQ(ele, 'Please Select Recruiter ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function InvoiceGpValidation() {
+            let flag = true;
+            const ele = $('#ddlClientInvoiceGroup');
+            clearMessageJQ(ele)
+            const recruiter = $('#ddlClientInvoiceGroup').val();
+            if (recruiter == "Select") {
+                addErrorMessageJQ(ele, 'Please Select Invoice Group ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function IsVmsTSValidation() {
+            let flag = true;
+            const ele = $("input[name='radioName']:checked");
+            clearMessageJQ(ele)
+            const isVms = $("input[name='radioName']:checked").val();
+            if (isVms == "") {
+                addErrorMessageJQ(ele, 'Please Choose One of there ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function PSValidation() {
             let flag = true;
             const ele = $('#ddlProjectStatus');
             clearMessageJQ(ele)
-            const projStatName = $(ele).val();
-            if (projStatName === "") {
-                addErrorMessageJQ(ele);
+            const stDate = $('#ddlProjectStatus').val();
+            if (stDate == "Select") {
+                addErrorMessageJQ(ele, 'Please Select Project Status');
                 flag = false;
-            } else {
-                flag = true;
-            }
+            } else { flag = true; }
             return flag;
         }
         function SaveData() {
@@ -231,7 +387,7 @@
                 Id: "",
                 SD: "",
                 ED: "",
-                Project_Status: "",
+                Project_Status:"",
                 Location_Group: "",
                 PayRoll_State: "",
                 Sales_Person: "",
@@ -250,7 +406,7 @@
             project.Id = $("#Id").val();
             project.SD = $("#startDate").val();
             project.ED = $("#endDate").val();
-            project.Project_Status = $("#ddlProjectStatus :selected").text();
+            project.Project_Status = $("#ddlProjectStatus").val();
             project.Location_Group = $("#ddlLocationGroup").val();
             project.PayRoll_State = $("#ddlPayrollState").val();
             project.Sales_Person = $("#ddlSalesPerson").val();
