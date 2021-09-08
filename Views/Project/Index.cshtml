@@ -4,7 +4,7 @@
 }
 
 <h2>Projects List</h2>
-    <div class="form-group col-md-3">
+    @*<div class="form-group col-md-3">
         <label>Project Type</label>
         <select class="form-control" id="ddlProjectType">
         </select>
@@ -20,11 +20,11 @@
     </div>
     <div class="form-group col-md-3">
         <input type="button" value="Submit" id="btnSearch" />
-    </div>
+    </div>*@
 <table id="prjList" class="table-bordered table-striped" data-order='[[3,"desc"]]'>
     <thead>
         <tr>
-            <th ordering="false">Customer Name</th>
+            <th>Customer Name</th>
             <th>Project Name</th>
             <th>Project Id</th>
             <th>Start Date</th>
@@ -55,11 +55,11 @@
 
             BindProjectTypeList();
             BindPracTypeList();
-            $("#btnSearch").on("click", function () {
-                //if (IsValidate()) {
-                //    SaveData();
-                //}
-            });
+            //$("#btnSearch").on("click", function () {
+            //    if (IsValidate()) {
+            //        SaveData();
+            //    }
+            //});
             function BindPracTypeList() {
                 $.ajax({
                     method: "GET",
@@ -91,9 +91,9 @@
 
             $("#prjList").DataTable({
                 //paging: false,
-                bFilter: false,
+                //bFilter: false,
                 //searching: false,
-                dom: 't',
+                //dom: 't',
 
                 ajax: {
                     url: "/ProjectApi/GetProjectList",
