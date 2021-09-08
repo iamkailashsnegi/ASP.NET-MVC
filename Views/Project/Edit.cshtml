@@ -191,7 +191,7 @@
             project.IVT = $("input[name='radioName']:checked").val();
             project.Prac_Type = $("#ddlPracticeType").val();
             project.Recruiter = $("#ddlRecruiter").val();
-            console.log(project);
+            //console.log(project);
             $.ajax({
                 method: "POST", //HTTP POST Method
                 url: "/ProjectApi/AddUpdate", //Controller/View

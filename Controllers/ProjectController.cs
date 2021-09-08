@@ -17,7 +17,7 @@ namespace MyProjectWebApp.Controllers
         {
             return View();
         }
-        public ActionResult Edit(int Id)
+        public ActionResult Edit()
         {
             return View();
         }
