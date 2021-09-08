@@ -77,7 +77,7 @@ namespace MyProjectWebApp.Repo
                     Project obj = new Project();
                     obj.Cust_Name = Convert.ToString(ds.Tables[0].Rows[i]["Cust_Name"]);
                     obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Name"]);
-                    //obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
+                    obj.Id = Convert.ToInt32(ds.Tables[0].Rows[i]["Proj_Id"]);
                     obj.SD = Convert.ToString(ds.Tables[0].Rows[i]["Start_Date"]);
                     obj.ED = Convert.ToString(ds.Tables[0].Rows[i]["End_Date"]);
                     obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["Proj_Status"]);

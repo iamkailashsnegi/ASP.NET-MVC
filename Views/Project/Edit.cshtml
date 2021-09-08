@@ -120,14 +120,14 @@
             ).done(function () {
                 GetData();
             })
-            //$("#btnUpdate").on("click", function () {
-            //    SaveData();
-            //});
+            $("#btnUpdate").on("click", function () {
+                SaveData();
+            });
         });
         function GetData() {
             $.ajax({
                 method: "GET", //HTTP POST Method
-                url: "/ProjectApi/Edit?Id=12345", //Controller/View
+                url: "/ProjectApi/Edit", //Controller/View
                 success: function (data) {
                     data = JSON.parse(data.Project);
                     //console.log(data);
