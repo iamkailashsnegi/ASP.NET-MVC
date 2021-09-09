@@ -18,6 +18,13 @@ namespace MyProjectWebApp.Controllers.Api
             var p = objRepo.GetProjectsList();
             return Ok(p);
         }
-
+        [HttpGet]
+        [Route("ProjectApi/GetList")]
+        public IHttpActionResult manageSearch(string Proj_Type, string Prac_Type, string Cust_Name)
+        {
+            ProjectSaveData objRepo = new ProjectSaveData();
+            var p = objRepo.Search(Proj_Type, Prac_Type, Cust_Name);
+            return Ok(p);
+        }
     }
 }

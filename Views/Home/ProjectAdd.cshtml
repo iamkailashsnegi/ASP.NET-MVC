@@ -2,9 +2,14 @@
 @{
     ViewBag.Title = "ProjectAdd";
 }
-<p><h2>Manage Projects</h2><hr /></p>
+<h2>ADD PROJECT</h2>
+<hr />
+@*<div class="form-group">
+        <a href="/Home/ProjectAdd">ADD</a>
+        <a href="/Project/Edit">EDIT</a>
+    </div>*@
 <form id="myForm">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="form-group">
             <label>Customer Name</label>
             <input class="form-control" type="text" id="custName" />
@@ -28,11 +33,8 @@
         <div class="form-group">
             <label>Project Status</label>
             <select class="form-control" id="ddlProjectStatus">
-                <option>Select</option>
             </select>
         </div>
-    </div>
-    <div class="col-md-4">
         <div class="form-group">
             <label>Location/Group</label>
             <select class="form-control" id="ddlLocationGroup">
@@ -51,6 +53,8 @@
                 <option>Select</option>
             </select>
         </div>
+    </div>
+    <div class="col-md-6">
         <div class="form-group">
             <label>Project Catagory</label>
             <select class="form-control" id="ddlProjectCatagory">
@@ -69,8 +73,6 @@
                 <option>Select</option>
             </select>
         </div>
-    </div>
-    <div class="col-md-4">
         <div class="form-group">
             <label>Times Sheet Representative</label>
             <select class="form-control" id="ddlTimesSheetRep">
@@ -91,9 +93,9 @@
         </div>
         <div class="form-group">
             <label>Is VMS Timesheet</label>
-            <input name="radioName" type="radio" id="yes" value="Yes" />
+            <input name="radioName" type="radio" id="yes" required='required' value="Yes" />
             <label for="yes">Yes</label>
-            <input name="radioName" type="radio" id="no" value="No" />
+            <input name="radioName" type="radio" id="no" required='required' value="No" />
             <label for="no">No</label>
         </div>
         <div class="form-group">
@@ -147,6 +149,36 @@
             }
             if (ctrlId === 'ddlProjectStatus') {
                 PSValidation();
+            }
+            if (ctrlId === 'ddlLocationGroup') {
+                LocationGpValidation();
+            }
+            if (ctrlId === 'ddlPayrollState') {
+                StateNameValidation();
+            }
+            if (ctrlId === 'ddlSalesPerson') {
+                SalesPersonValidation();
+            }
+            if (ctrlId === 'ddlProjectCatagory') {
+                ProjectCategoryValidation();
+            }
+            if (ctrlId === 'ddlSubDomain') {
+                SubDomainValidation();
+            }
+            if (ctrlId === 'ddlTimesSheetRep') {
+                TSRepresentativenValidation();
+            }
+            if (ctrlId === 'ddlTimesheetType') {
+                TSTypeValidation();
+            }
+            if (ctrlId === 'ddlPracticeType') {
+                PracticeTypeValidation();
+            }
+            if (ctrlId === 'ddlRecruiter') {
+                RecruiterValidation();
+            }
+            if (ctrlId === 'ddlClientInvoiceGroup') {
+                InvoiceGpValidation();
             }
         });
         function IsValidate() {
@@ -242,7 +274,7 @@
             clearMessageJQ(ele)
             const Name = $(ele).val();
             // console.log(Name);
-            if (Name === "" || Name.split('')[0] == 0 || Name.length!==5) {
+            if (Name === "" || Name.split('')[0] == 0 || Name.length !== 5) {
                 addErrorMessageJQ(Id, 'Id is not valid');
                 flag = false;
             } else {
@@ -387,42 +419,11 @@
             const ele = $('#ddlProjectStatus');
             clearMessageJQ(ele)
             const stDate = $('#ddlProjectStatus').val();
-            if (stDate == "Select") {
+            if (stDate == "Select Status") {
                 addErrorMessageJQ(ele, 'Please Select Project Status');
                 flag = false;
             } else { flag = true; }
             return flag;
-        }
-        function SaveData() {
-            //debugger;
-            let project = {};
-            project.Cust_Name = $("#custName").val();
-            project.Project_Name = $("#projectName").val();
-            project.Id = $("#Id").val();
-            project.SD = $("#startDate").val();
-            project.ED = $("#endDate").val();
-            project.Project_Status = $("#ddlProjectStatus").val();
-            project.Location_Group = $("#ddlLocationGroup").val();
-            project.PayRoll_State = $("#ddlPayrollState").val();
-            project.Sales_Person = $("#ddlSalesPerson").val();
-            project.Proj_Cat = $("#ddlProjectCatagory").val();
-            project.Proj_Type = $("#ddlProjectType").val();
-            project.Sub_Dom = $("#ddlSubDomain").val();
-            project.TSP = $("#ddlTimesSheetRep").val();
-            project.CIG = $("#ddlClientInvoiceGroup").val();
-            project.TimesheetType = $("#ddlTimesheetType").val();
-            project.IVT = $("input[name='radioName']:checked").val();
-            project.Prac_Type = $("#ddlPracticeType").val();
-            project.Recruiter = $("#ddlRecruiter").val();
-            //console.log(project);
-            $.ajax({
-                method: "POST", //HTTP POST Method
-                url: "/ProjectApi/Add", //Controller/View
-                dataType: "json",
-                data: project,
-                success: function () { },
-                error: function () { }
-            });
         }
         function BindProjectStatusList() {
             $.ajax({
@@ -520,7 +521,7 @@
                     });
                     //ddlRecruiter
                 },
-                error: function () {}
+                error: function () { }
             })
         }
         function BindLocationList() {

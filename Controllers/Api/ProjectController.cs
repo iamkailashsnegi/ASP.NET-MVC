@@ -23,7 +23,7 @@ namespace MyProjectWebApp.Controllers.Api
         }
 
         [HttpGet]
-        [Route("ProjectApi/EditDetails")]
+        [Route("ProjectApi/EditDetails/Id")]
         public IHttpActionResult Edit(int Id)
         {
             ProjectSaveData objRepo = new ProjectSaveData();
