@@ -3,25 +3,27 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Projects List</h2>
-    @*<div class="form-group col-md-3">
-        <label>Project Type</label>
-        <select class="form-control" id="ddlProjectType">
-        </select>
-    </div>
-    <div class="form-group col-md-3">
-        <label>Practice Type</label>
-        <select class="form-control" id="ddlPracticeType">
-        </select>
-    </div>
-    <div class="form-group col-md-3">
-        <label>Search</label>
-        <input class="form-control" type="text" id="custName" />
-    </div>
-    <div class="form-group col-md-3">
-        <input type="button" value="Submit" id="btnSearch" />
-    </div>*@
-<table id="prjList" class="table-bordered table-striped" data-order='[[3,"desc"]]'>
+<hr />
+<h3>MANAGE PROJECTS LIST</h3>
+<hr />
+<div class="form-group col-md-3">
+    <label>Project Type</label>
+    <select class="form-control" id="ddlProjectType">
+    </select>
+</div>
+<div class="form-group col-md-3">
+    <label>Practice Type</label>
+    <select class="form-control" id="ddlPracticeType">
+    </select>
+</div>
+<div class="form-group col-md-3">
+    <label>Search</label>
+    <input class="form-control" type="text" id="custName" />
+</div>
+<div class="form-group col-md-3">
+    <input type="button" value="Submit" id="btnSearch" />
+</div>
+<table id="prjList" class="table-bordered table-striped">
     <thead>
         <tr>
             <th>Customer Name</th>
@@ -42,7 +44,7 @@
             <th>Is VMS Timesheet</th>
             <th>Practice Type</th>
             <th>Recuriter</th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -55,11 +57,6 @@
 
             BindProjectTypeList();
             BindPracTypeList();
-            //$("#btnSearch").on("click", function () {
-            //    if (IsValidate()) {
-            //        SaveData();
-            //    }
-            //});
             function BindPracTypeList() {
                 $.ajax({
                     method: "GET",
@@ -67,7 +64,7 @@
                     success: function (data) {
                         //console.log(data);
                         $(data).each(function () {
-                            $("#ddlPracticeType").append($("<option></option>").val(this.ID).html(this.Name));
+                            $("#ddlPracticeType").append($("<option></option>").val(this.Id).html(this.Name));
                         });
                         //ddlPracticeType
                     },
@@ -81,7 +78,7 @@
                     success: function (data) {
                         //console.log(data);
                         $(data).each(function () {
-                            $("#ddlProjectType").append($("<option></option>").val(this.ID).html(this.Name));
+                            $("#ddlProjectType").append($("<option></option>").val(this.Id).html(this.Name));
                         });
                         //ddlProjectType
                     },
@@ -90,11 +87,10 @@
             }
 
             $("#prjList").DataTable({
-                //paging: false,
-                //bFilter: false,
-                //searching: false,
-                //dom: 't',
-
+                paging: false,
+                bFilter: false,
+                searching: false,
+                dom: 't',
                 ajax: {
                     url: "/ProjectApi/GetProjectList",
                     dataSrc: ""
@@ -102,11 +98,11 @@
                 columns: [
                     {
                         data: "Cust_Name",
-                        /*"searchable": false*/
+                        "searchable": false
                     },
                     {
                         data: "Project_Name",
-                        /*render: function (data) { return "" + data }*/
+                        render: function (data) { return "" + data }
                     },
                     {
                         data: "Id",
@@ -157,13 +153,28 @@
                         data: "Recruiter",
                     },
                     {
-                        //edit button creation
-                        render: function (data, type, row) {
+                        render: function (data, type, row, meta) {
                             return '<a href="/Project/Edit?Id=' + row.Id + '">EDIT</a>';
                         }
                     }
                 ]
             });
+            $("#btnSearch").on("click", function () {
+                SaveData();
+            });
+            function SaveData() {
+                let project = {};
+                project.Cust_Name = $("#custName").val();
+                project.Proj_Type = $("#ddlProjectType").val();
+                project.Prac_Type = $("#ddlPracticeType").val();
+                $.ajax({
+                    method: "GET", //HTTP GET Method
+                    url: "/ProjectApi/GetList", //Controller/View
+                    data: project,
+                    success: function () { },
+                    error: function () { }
+                });
+            }
 
         });
     </script>
