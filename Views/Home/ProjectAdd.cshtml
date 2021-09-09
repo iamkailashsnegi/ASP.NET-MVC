@@ -133,6 +133,22 @@
                 }
             });
         });
+        $(document).on('input', 'input[type=text]', (event) => {
+            const $ctrl = event.target;
+            const ctrlId = $($ctrl).attr('id');
+            if (ctrlId === 'custName') {
+                custNameValidationJQ();
+            }
+            if (ctrlId === 'projectName') {
+                projNameValidationJQ();
+            }
+            if (ctrlId === 'Id') {
+                projIdValidationJQ();
+            }
+            if (ctrlId === 'ddlProjectStatus') {
+                PSValidation();
+            }
+        });
         function IsValidate() {
             let flag = true;
             if (!custNameValidationJQ()) {
